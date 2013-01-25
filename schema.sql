@@ -1,0 +1,6 @@
+-- 
+--  schema.sql
+--  journeysql
+--  
+--  Created by gaspard on 2013-01-25.
+-- 
