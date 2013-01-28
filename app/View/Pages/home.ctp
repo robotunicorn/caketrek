@@ -43,7 +43,10 @@ App::uses('Debugger', 'Utility');
 
 		</div>
 		<h3>Pre-baked stuffs</h3>
-			<img src="/img/tourist.png" alt="the tourist has been saved">
+		<?php
+			echo $this->Html->image("tourist.png", array("alt" => "Tourist"));
+		?>
+			
 		<h3>Plugins</h3>
 			<h4>Media</h4>
 			<p><a href="https://github.com/Grafikart/CakePHP-Media">CakePHP-Media Plugin</a> has been added. This <a href="http://www.grafikart.fr/tutoriels/cakephp/medias-plugin-301" hreflang="fr" title="screencast">screencast</a> explains how to use it</p>
