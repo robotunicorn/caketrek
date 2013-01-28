@@ -1,23 +1,26 @@
 <?php
 
 App::uses('AppController', 'Controller');
-
 /**
-* @author 
+* @author Rémi Rollet
 */
 
-
 class FindsController extends AppController{
-	# j'aime les carottes
 
 	// headless
 	public $uses = array();
-	
-	
-	public function find($value=''){
-		# code...
-		///$this->loadModel();
+
+/**
+*  Fonction de recherche find()
+**/
+	public function find(){
+		$entry = $this->data;
+		$entry = strtolower(current($entry));
+		debug($entry);
 		
+		$this->loadModel('Tourist');	
+				
 	}
+
 
 }
