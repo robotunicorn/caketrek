@@ -143,7 +143,6 @@ Cache::config('default', array('engine' => 'File'));
  *
  */
 
-CakePlugin::load('Media');
 CakePlugin::load('Badge');
 
 /**
