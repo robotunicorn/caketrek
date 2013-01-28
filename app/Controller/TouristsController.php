@@ -69,6 +69,7 @@ class TouristsController extends AppController {
 
 		$this->Tourist->recursive = 0;
 		$this->Tourist->contain('User','Guide','Badge');
+		$this->helpers[] = 'Media.Uploader';
 		
 		$this->Tourist->id = $id;
 		if (!$this->Tourist->exists()) {

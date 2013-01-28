@@ -12,6 +12,7 @@ class User extends AppModel {
  *
  * @var string
  */
+	public $actsAs = array('Containable','Media.Media');
 	public $displayField = 'username';
 
 /**

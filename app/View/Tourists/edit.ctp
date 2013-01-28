@@ -12,6 +12,7 @@
 		echo $this->Form->input('badges',
 			array('label'=>'Badges','type'=>'select','multiple'=>'checkbox')
 		);
+		echo $this->Uploader->iframe('Tourist',$this->request->data['Tourist']['id']);
 		
 	?>
 	</fieldset>
