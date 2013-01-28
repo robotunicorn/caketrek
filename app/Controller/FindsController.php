@@ -16,10 +16,8 @@ class FindsController extends AppController{
 	public function find(){
 		$entry = $this->data;
 		$entry = strtolower(current($entry));
-		debug($entry);
-		
-		$this->loadModel('Tourist');	
-				
+		debug($entry);	
+
 	}
 
 
