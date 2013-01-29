@@ -49,8 +49,20 @@ class TouristsController extends AppController {
 		$me['id'] = 1;
 		$data['Friends']['follower_id'] = $me['id']; // Ici on prend l'id du user connecté dans la session du component Auth
 		$data['Friends']['following_id'] = $to_follow_id;
+
+		/**
+		*
+		* Containable doesn't work in this case
+		* $this->Tourist->contain('Following');
+		**/
+
 		$this->Tourist->bindModel(array('hasOne'=>array('Friends')),false);
-		if ($this->Tourist->Friends->save($data)) {
+		$validate = $this->Tourist->Friend->find('all', array('conditions' => array('following_id' => $to_follow_id , 'follower_id' => $me['id'])));
+
+		if(empty($validate))
+		{
+			$this->Tourist->Friends->create();
+			$this->Tourist->Friends->save($data);
 			$this->Session->setFlash(__('Tourist Followed'));
 			$this->redirect(array('action' => 'index'));
 		}
@@ -87,11 +99,11 @@ class TouristsController extends AppController {
 
 		}
 		if ($this->Tourist->Friend->delete()) {
-			$this->Session->setFlash(__('Tourist deleted'));
-			$this->redirect(array('action' => 'index'));
+			$this->Session->setFlash(__('No longer friends'));
+			$this->redirect(Controller::referer());
 		}
-		$this->Session->setFlash(__('Tourist was not deleted'));
-		$this->redirect(array('action' => 'index'));
+		$this->Session->setFlash(__('Frienship was not deleted'));
+		$this->redirect(Controller::referer());
 	}
 
 
