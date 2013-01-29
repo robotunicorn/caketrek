@@ -16,7 +16,9 @@ class TouristTest extends CakeTestCase {
 		'app.tourist',
 		'app.user',
 		'app.badge',
-		'app.badges_user'
+		'app.badges_user',
+		'app.guide',
+		'app.journey'
 	);
 
 /**
