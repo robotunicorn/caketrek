@@ -38,6 +38,27 @@ class TouristsController extends AppController {
 		$this->set('tourist', $tourist);
 		
 	}
+/**
+ * Follow method
+ *
+ * @throws NotFoundException
+ * @param string $to_follow_id
+ * @return void
+ */
+	public function follow($to_follow_id) {
+		$me['id'] = 1;
+		$data['Friends']['follower_id'] = $me['id']; // Ici on prend l'id du user connecté dans la session du component Auth
+		$data['Friends']['following_id'] = $to_follow_id;
+		$this->Tourist->bindModel(array('hasOne'=>array('Friends')),false);
+		if ($this->Tourist->Friends->save($data)) {
+			$this->Session->setFlash(__('Tourist Followed'));
+			$this->redirect(array('action' => 'index'));
+		}
+		else {
+		  	$this->Session->setFlash(__('You already follow that tourist'));
+			$this->redirect(array('action' => 'index'));
+		}
+	}
 
 /**
  * add method
@@ -113,6 +134,8 @@ class TouristsController extends AppController {
 		$this->Session->setFlash(__('Tourist was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+
+
 
 /**
  * admin_index method

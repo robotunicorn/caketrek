@@ -26,6 +26,10 @@
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $tourist['Tourist']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $tourist['Tourist']['id'])); ?>
+
+			<?php echo $this->Form->postLink(__('Follow'), array('action' => 'follow', $tourist['Tourist']['id'])); ?>
+
+
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $tourist['Tourist']['id']), null, __('Are you sure you want to delete # %s?', $tourist['Tourist']['id'])); ?>
 		</td>
 	</tr>

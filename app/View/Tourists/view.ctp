@@ -49,6 +49,7 @@
 		echo $tourist['Badge'][$i]['label'].',';
 	}
 	?>
+	
 
 	</div>
 	
@@ -56,6 +57,7 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
+		<li><?php echo $this->Form->postLink(__('Follow'), array('action' => 'follow', $tourist['Tourist']['id'])); ?></li>
 		<li><?php echo $this->Html->link(__('Edit Tourist'), array('action' => 'edit', $tourist['Tourist']['id'])); ?> </li>
 		<li><?php echo $this->Form->postLink(__('Delete Tourist'), array('action' => 'delete', $tourist['Tourist']['id']), null, __('Are you sure you want to delete # %s?', $tourist['Tourist']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('List Tourists'), array('action' => 'index')); ?> </li>

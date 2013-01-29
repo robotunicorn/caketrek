@@ -63,5 +63,42 @@ public $virtualFields = array(
 			'order' => ''
 		)
 	);
+/**
+ * hasAndBelongsToMany associations
+ *
+ * @var array
+ */
+	public $hasAndBelongsToMany = array(
+	  'Following' => array(
+	      'className' => 'Tourist',
+	      'joinTable' => 'friends',
+	      'foreignKey' => 'follower_id',
+	      'associationForeignKey' => 'following_id',
+	      'unique' => true,
+	      'conditions' => '',
+	      'fields' => '',
+	      'order' => '',
+	      'limit' => '',
+	      'offset' => '',
+	      'finderQuery' => '',
+	      'deleteQuery' => '',
+	      'insertQuery' => ''
+	    ),
+	  'Follower' => array(
+	      'className' => 'Tourist',
+	      'joinTable' => 'friends',
+	      'foreignKey' => 'following_id',
+	      'associationForeignKey' => 'follower_id',
+	      'unique' => true,
+	      'conditions' => '',
+	      'fields' => '',
+	      'order' => '',
+	      'limit' => '',
+	      'offset' => '',
+	      'finderQuery' => '',
+	      'deleteQuery' => '',
+	      'insertQuery' => ''
+	    )
+	);
 	
 }
