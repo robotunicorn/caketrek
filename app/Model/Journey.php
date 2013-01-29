@@ -1,20 +1,22 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Guide Model
+ * Journey Model
  *
  * @property Tourist $Tourist
- * @property Journey $Journey
- * @property Journey $Journey
+ * @property Guide $Guide
+ * @property Track $Track
+ * @property Zone $Zone
+ * @property Guide $Guide
  */
-class Guide extends AppModel {
+class Journey extends AppModel {
 
 /**
  * Display field
  *
  * @var string
  */
-	public $displayField = 'slogan';
+	public $displayField = 'name';
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -31,30 +33,29 @@ class Guide extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
-	);
-
-/**
- * hasMany associations
- *
- * @var array
- */
-	public $hasMany = array(
-		'Journey' => array(
-			'className' => 'Journey',
+		),
+		'Guide' => array(
+			'className' => 'Guide',
 			'foreignKey' => 'guide_id',
-			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
+			'order' => ''
+		),
+		'Track' => array(
+			'className' => 'Track',
+			'foreignKey' => 'track_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Zone' => array(
+			'className' => 'Zone',
+			'foreignKey' => 'zone_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
-
 
 /**
  * hasAndBelongsToMany associations
@@ -62,11 +63,11 @@ class Guide extends AppModel {
  * @var array
  */
 	public $hasAndBelongsToMany = array(
-		'Journey' => array(
-			'className' => 'Journey',
+		'Guide' => array(
+			'className' => 'Guide',
 			'joinTable' => 'journeys_guides',
-			'foreignKey' => 'guide_id',
-			'associationForeignKey' => 'journey_id',
+			'foreignKey' => 'journey_id',
+			'associationForeignKey' => 'guide_id',
 			'unique' => 'keepExisting',
 			'conditions' => '',
 			'fields' => '',
@@ -78,4 +79,5 @@ class Guide extends AppModel {
 			'insertQuery' => ''
 		)
 	);
+
 }

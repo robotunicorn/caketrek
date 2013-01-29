@@ -72,7 +72,7 @@
 	</tr>
 	<?php
 		$i = 0;
-		foreach ($guide['Journey'] as $journey): ?>
+		foreach ($guide['Journey'] as $blabla): ?>
 		<tr>
 			<td><?php echo $journey['id']; ?></td>
 			<td><?php echo $journey['tourist_id']; ?></td>

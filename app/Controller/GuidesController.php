@@ -48,7 +48,8 @@ class GuidesController extends AppController {
 			}
 		}
 		$tourists = $this->Guide->Tourist->find('list');
-		$this->set(compact('tourists'));
+		$journeys = $this->Guide->Journey->find('list');
+		$this->set(compact('tourists', 'journeys'));
 	}
 
 /**
@@ -74,7 +75,8 @@ class GuidesController extends AppController {
 			$this->request->data = $this->Guide->read(null, $id);
 		}
 		$tourists = $this->Guide->Tourist->find('list');
-		$this->set(compact('tourists'));
+		$journeys = $this->Guide->Journey->find('list');
+		$this->set(compact('tourists', 'journeys'));
 	}
 
 /**
@@ -142,7 +144,8 @@ class GuidesController extends AppController {
 			}
 		}
 		$tourists = $this->Guide->Tourist->find('list');
-		$this->set(compact('tourists'));
+		$journeys = $this->Guide->Journey->find('list');
+		$this->set(compact('tourists', 'journeys'));
 	}
 
 /**
@@ -168,7 +171,8 @@ class GuidesController extends AppController {
 			$this->request->data = $this->Guide->read(null, $id);
 		}
 		$tourists = $this->Guide->Tourist->find('list');
-		$this->set(compact('tourists'));
+		$journeys = $this->Guide->Journey->find('list');
+		$this->set(compact('tourists', 'journeys'));
 	}
 
 /**

@@ -1,11 +1,11 @@
 <?php
-App::uses('Guide', 'Model');
+App::uses('JourneysGuide', 'Model');
 
 /**
- * Guide Test Case
+ * JourneysGuide Test Case
  *
  */
-class GuideTest extends CakeTestCase {
+class JourneysGuideTest extends CakeTestCase {
 
 /**
  * Fixtures
@@ -13,14 +13,14 @@ class GuideTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.guide',
+		'app.journeys_guide',
+		'app.journey',
 		'app.tourist',
 		'app.user',
 		'app.badge',
 		'app.badges_user',
+		'app.guide',
 		'app.badge_object',
-		'app.journey',
-		'app.journeys_guide',
 		'app.track',
 		'app.zone'
 	);
@@ -32,7 +32,7 @@ class GuideTest extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
-		$this->Guide = ClassRegistry::init('Guide');
+		$this->JourneysGuide = ClassRegistry::init('JourneysGuide');
 	}
 
 /**
@@ -41,7 +41,7 @@ class GuideTest extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
-		unset($this->Guide);
+		unset($this->JourneysGuide);
 
 		parent::tearDown();
 	}

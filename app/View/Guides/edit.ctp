@@ -8,6 +8,7 @@
 		echo $this->Form->input('description');
 		echo $this->Form->input('tourist_id');
 		echo $this->Form->input('validated');
+		echo $this->Form->input('Journey');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
@@ -15,7 +16,6 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-
 		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Guide.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Guide.id'))); ?></li>
 		<li><?php echo $this->Html->link(__('List Guides'), array('action' => 'index')); ?></li>
 		<li><?php echo $this->Html->link(__('List Tourists'), array('controller' => 'tourists', 'action' => 'index')); ?> </li>

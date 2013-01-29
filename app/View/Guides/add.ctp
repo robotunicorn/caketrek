@@ -7,6 +7,7 @@
 		echo $this->Form->input('description');
 		echo $this->Form->input('tourist_id');
 		echo $this->Form->input('validated');
+		echo $this->Form->input('Journey');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
