@@ -21,9 +21,9 @@
 			<?php echo h($tourist['Tourist']['bio']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Media Id'); ?></dt>
+		<dt><?php echo __('Avatar'); ?></dt>
 		<dd>
-			<?php echo h($tourist['Tourist']['media_id']); ?>
+			<?php echo $this->html->image($tourist['Tourist']['thumb']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('User'); ?></dt>

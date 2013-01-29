@@ -7,11 +7,11 @@
 		echo $this->Form->input('first_name');
 		echo $this->Form->input('last_name');
 		echo $this->Form->input('bio');
-		echo $this->Form->input('media_id');
 		echo $this->Form->input('user_id');
 		echo $this->Form->input('badges',
 			array('label'=>'Badges','type'=>'select','multiple'=>'checkbox')
 		);
+		echo $this->Form->label('Avatar');
 		echo $this->Uploader->iframe('Tourist',$this->request->data['Tourist']['id']);
 		
 	?>

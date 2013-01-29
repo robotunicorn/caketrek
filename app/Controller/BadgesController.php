@@ -7,6 +7,8 @@ App::uses('AppController', 'Controller');
  */
 class BadgesController extends AppController {
 
+	public $theme = "Bootstrap";
+
 /**
  * index method
  *

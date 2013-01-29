@@ -31,7 +31,7 @@ public $virtualFields = array(
 		TODO try public $displayField = 'full_name';
 	*/
 
-	public $actsAs = array('Containable','Badge.Badge');
+	public $actsAs = array('Containable','Badge.Badge','Media.Media');
 	
 
 /**
