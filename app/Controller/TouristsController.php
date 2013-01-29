@@ -64,8 +64,8 @@ class TouristsController extends AppController {
 		$me['id'] = 1;
 		$this->Tourist->contain('Following');
 
-		$following = $this->Tourist->find('all', array('conditions' => array('Tourist.id' => $me['id'])));
-		$this->set('followings', $following);
+		$this->Tourist->find('all', array('conditions' => array('Tourist.id' => $me['id'])));
+		$this->set('followings',$this->paginate());
 	}
 
 /**
