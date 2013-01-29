@@ -2,60 +2,64 @@
 
 App::uses('AppController', 'Controller');
 /**
-* @author Rémi Rollet
+* @author digithis
 */
 
 class FindsController extends AppController{
+	
 	public $tables = array(
-		'Users'=>array('username','email'),
-		'Guides'=>array('slogan')
+		'Users'	  => array('username','email'),
+		'Journeys'  =>array('about','name','body'),
+		'Tourists'=>array('bio','first_name','last_name')
 	);
 	public $uses = array();
+	public $total_results = 0;
 
 /**
-*  Fonction de recherche find()
-**/		
-		
-		public function find(){
-		foreach($this->tables as $k=>$v){
-			array_push($this->uses,$k);
-		}
-		if(empty($this->data)){
+* 	Fonction index() => Traitement des données envoyées par le formulaire
+**/	
+	public function index(){
+
+	foreach($this->tables as $k=>$v){
+		array_push($this->uses,$k);
+	}
+	if(empty($this->data)){
+		//todo
+	}
+	else{
+		$results = array();
 			
-		}
-		else{
-			$results = array();
-			$entry = $this->data;
-			$entry = strtolower(current($entry['Find']));
+		$entry = $this->data;
+		$entry = strtolower(current($entry['Find']));
+	
+		foreach($this->tables as $k=>$v):
 			
-			foreach($this->tables as $k=>$v):
-				
 			$results=$this->getResults($k,$entry,$results,$v);
 			
-			endforeach;
-			debug($results);		
+		endforeach;
+		debug($results); //debug des results		
 		}
 	}
-	
+
+/**
+*  Fonction de comparaison des entrées dans les tables indiquées => getResults()
+**/
 	function getResults($table,$entry,$results,$columns){
-		foreach($columns as $v){
-			$results[$table][$v]=array();
-			$data = $this->$table->find('all', array( 
-				'conditions' => array($table.'.'.$v.' LIKE' => '%'.$entry.'%') 
-			));
+	foreach($columns as $v){
+		$data = $this->$table->find('all', array( 
+			'conditions' => array($table.'.'.$v.' LIKE' => '%'.$entry.'%') 
+		));
 	
-			if(!empty($data)){
-				foreach($data as $v2){
-					array_push($results[$table][$v],current($v2));
-				}
-			}
-			else{
-				$results[$table][$v] = "Pas de résultat dans cette column";
+		if(!empty($data)){
+			$results[$table]=array();
+			foreach($data as $v2){
+				array_push($results[$table],current($v2));
+				$this->total_results++;
 			}
 		}
 
-		return $results;
 	}
-		
+	return $results; //return array de résultats
+	}
 
 }
