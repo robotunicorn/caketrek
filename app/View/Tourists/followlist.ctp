@@ -1,23 +1,20 @@
 <div class="following index">
-	<h2><?php echo __('Mes Abonnements'); ?> ı</h2>
-
+	<h2><?php echo __('People I\'m Following'); ?></h2>
+	<?php debug($followings); ?>
 	<table cellpadding="0" cellspacing="0">
-	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('First Name'); ?></th>
-			<th><?php echo $this->Paginator->sort('Last Name'); ?></th>
-			<th><?php echo $this->Paginator->sort('Bio'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
+	
 	<?php
-	foreach ($followings['0']['Following'] as $following): ?>
+	
+	foreach ($followings['Following'] as $following): ?>
 	<tr>
 		<td><?php echo ($following['id']); ?>&nbsp;</td>
+		<td><?php echo ($following['Friend']['id']); ?>&nbsp;</td>
 		<td><?php echo ($following['first_name']); ?>&nbsp;</td>
 		<td><?php echo ($following['last_name']); ?>&nbsp;</td>
 		<td><?php echo ($following['bio']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $following['id'])); ?>
+			<?php echo $this->Form->postLink(__('Unfriend'), array('action' => 'unfriend', $following['Friend']['id']), null, __('Are you sure you want to unfriend # %s?', $following['Friend']['id'])); ?>
 		</td>
 	</tr>
 <?php  endforeach; ?>

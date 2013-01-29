@@ -64,9 +64,27 @@ class TouristsController extends AppController {
 		$me['id'] = 1;
 		$this->Tourist->contain('Following');
 
-		$this->Tourist->find('all', array('conditions' => array('Tourist.id' => $me['id'])));
-		$this->set('followings',$this->paginate());
+		$this->Tourist->id = $me['id'];
+		$tourists = $this->Tourist->find('first');
+		$this->set('followings',$tourists);
 	}
+
+	public function unfriend($id = null) {
+		if (!$this->request->is('post')) {
+			throw new MethodNotAllowedException();
+		}
+		$this->Tourist->Friend->id = $id;
+		if (!$this->Tourist->Friend->exists()) {
+
+		}
+		if ($this->Tourist->Friend->delete()) {
+			$this->Session->setFlash(__('Tourist deleted'));
+			$this->redirect(array('action' => 'index'));
+		}
+		$this->Session->setFlash(__('Tourist was not deleted'));
+		$this->redirect(array('action' => 'index'));
+	}
+
 
 /**
  * add method
