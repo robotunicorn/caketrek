@@ -1,3 +1,5 @@
+<?php debug($journey); ?>
+
 <div class="journeys view">
 <h2><?php  echo __('Journey'); ?></h2>
 	<dl>
@@ -6,9 +8,9 @@
 			<?php echo h($journey['Journey']['id']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Tourist'); ?></dt>
+		<dt><?php echo __('Leader'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($journey['Tourist']['first_name'], array('controller' => 'tourists', 'action' => 'view', $journey['Tourist']['id'])); ?>
+			<?php echo $this->Html->link($journey['Leader']['first_name'], array('controller' => 'tourists', 'action' => 'view', $journey['Leader']['id'])); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Guide'); ?></dt>

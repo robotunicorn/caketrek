@@ -27,7 +27,7 @@ class Journey extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'Tourist' => array(
+		'Leader' => array(
 			'className' => 'Tourist',
 			'foreignKey' => 'tourist_id',
 			'conditions' => '',
