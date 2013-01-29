@@ -68,11 +68,9 @@ public $virtualFields = array(
 	public $hasMany = array(
         'Comment' => array(
             'className'     => 'Comment',
-            'foreignKey'    => 'user_id',
+            'foreignKey'    => 'object_id',
             'conditions'    => array('Comment.object_type' => 'Tourist','Comment.object_id' => 'Tourist.id'),
-            'order'         => 'Comment.created DESC',
-            'limit'         => '5',
-            'dependent'     => true
+            'order'         => '',
         )
     );
 	

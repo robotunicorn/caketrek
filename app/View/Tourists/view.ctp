@@ -51,6 +51,16 @@
 	?>
 
 	</div>
+
+	<div>
+		Commentaires :
+	<?php
+	for ($i=0; $i < count($tourist['Comment']); $i++) { 
+		echo $tourist['Comment'][$i]['comment'].',';
+	}
+	?>
+
+	</div>
 	
 </div>
 <div class="actions">

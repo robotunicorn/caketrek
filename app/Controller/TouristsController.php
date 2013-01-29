@@ -25,10 +25,25 @@ class TouristsController extends AppController {
  * @param string $id
  * @return void
  */
+	/*public function comment($id = null) {
+		$this->Tourist->id = $id;
+		$this->Tourist->recursive = 0;
+		$this->Tourist->contain('User','Guide','Badge','Comment');
+		if (!$this->Tourist->exists()) {
+			throw new NotFoundException(__('Invalid tourist'));
+		}
+		$tourist = $this->Tourist->find('first', array(
+			'conditions' => array('Tourist.id' => $id)
+		));
+		$this->set('tourist', $tourist);
+
+		
+	}*/
+
 	public function view($id = null) {
 		$this->Tourist->id = $id;
 		$this->Tourist->recursive = 0;
-		$this->Tourist->contain('User','Guide','Badge');
+		$this->Tourist->contain('User','Guide','Badge','Comment');
 		if (!$this->Tourist->exists()) {
 			throw new NotFoundException(__('Invalid tourist'));
 		}
