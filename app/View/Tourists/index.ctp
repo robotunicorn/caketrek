@@ -56,5 +56,7 @@
 		<li><?php echo $this->Html->link(__('New Tourist'), array('action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Followers'), array('action' => 'followerlist')); ?> </li>
+		<li><?php echo $this->Html->link(__('People I follow'), array('action' => 'followlist')); ?> </li>
 	</ul>
 </div>
