@@ -3,6 +3,7 @@
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
+			<th><?php echo $this->Paginator->sort('first_name'); ?></th>
 			<th><?php echo $this->Paginator->sort('last_name'); ?></th>
 			<th><?php echo $this->Paginator->sort('bio'); ?></th>
 			<th><?php echo $this->Paginator->sort('media_id'); ?></th>
@@ -15,12 +16,11 @@
 	foreach ($tourists as $tourist): ?>
 	<tr>
 		<td><?php echo h($tourist['Tourist']['id']); ?>&nbsp;</td>
-		<td><?php echo h($tourist['Tourist']['full_name']); ?>&nbsp;</td>
+		<td><?php echo h($tourist['Tourist']['first_name']); ?>&nbsp;</td>
+		<td><?php echo h($tourist['Tourist']['last_name']); ?>&nbsp;</td>
 		<td><?php echo h($tourist['Tourist']['bio']); ?>&nbsp;</td>
 		<td><?php echo h($tourist['Tourist']['media_id']); ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($tourist['User']['username'], array('controller' => 'users', 'action' => 'view', $tourist['User']['id'])); ?>
-		</td>
+		<td><?php echo h($tourist['Tourist']['user_id']); ?>&nbsp;</td>
 		<td><?php echo h($tourist['Tourist']['created']); ?>&nbsp;</td>
 		<td><?php echo h($tourist['Tourist']['modified']); ?>&nbsp;</td>
 		<td class="actions">
@@ -50,7 +50,5 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Tourist'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

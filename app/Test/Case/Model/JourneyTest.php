@@ -1,11 +1,11 @@
 <?php
-App::uses('Tourist', 'Model');
+App::uses('Journey', 'Model');
 
 /**
- * Tourist Test Case
+ * Journey Test Case
  *
  */
-class TouristTest extends CakeTestCase {
+class JourneyTest extends CakeTestCase {
 
 /**
  * Fixtures
@@ -13,7 +13,12 @@ class TouristTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.tourist'
+		'app.journey',
+		'app.tourist',
+		'app.journeys_tourist',
+		'app.guide',
+		'app.track',
+		'app.zone'
 	);
 
 /**
@@ -23,7 +28,7 @@ class TouristTest extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
-		$this->Tourist = ClassRegistry::init('Tourist');
+		$this->Journey = ClassRegistry::init('Journey');
 	}
 
 /**
@@ -32,7 +37,7 @@ class TouristTest extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
-		unset($this->Tourist);
+		unset($this->Journey);
 
 		parent::tearDown();
 	}
