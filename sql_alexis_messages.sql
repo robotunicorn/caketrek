@@ -297,3 +297,16 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `created`, `updated`
 CREATE TABLE `zones` (
   `id` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `notifications`
+--
+
+
+CREATE TABLE `notifications` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `type` char(11) DEFAULT NULL,
+  `tourist_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;

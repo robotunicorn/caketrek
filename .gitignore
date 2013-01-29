@@ -19,3 +19,11 @@ app/tmp/cache/persistent/myapp_cake_core_cake_console_
 app/tmp/cache/persistent/myapp_cake_core_cake_console_
 
 app/tmp/cache/persistent/myapp_cake_core_object_map
+
+app/.DS_Store
+
+app/Model/.DS_Store
+
+app/Model/.DS_Store
+
+.DS_Store
