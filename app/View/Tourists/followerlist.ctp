@@ -1,7 +1,7 @@
 <div class="following index">
-	<h2><?php echo __('People I\'m Following'); ?></h2>
+	<h2><?php echo __('People Who Follow me'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
-	<tr>
+		<tr>
 		<th>ID</th>
 		<th>Friend ID</th>
 		<th>First Name</th>
@@ -11,7 +11,7 @@
 	</tr>
 	<?php
 	
-	foreach ($followings['Following'] as $following): ?>
+	foreach ($followers['Follower'] as $following): ?>
 	<tr>
 		<td><?php echo ($following['id']); ?>&nbsp;</td>
 		<td><?php echo ($following['Friend']['id']); ?>&nbsp;</td>
@@ -20,7 +20,6 @@
 		<td><?php echo ($following['bio']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $following['id'])); ?>
-			<?php echo $this->Form->postLink(__('Unfriend'), array('action' => 'unfriend', $following['Friend']['id']), null, __('Are you sure you want to unfriend # %s?', $following['Friend']['id'])); ?>
 		</td>
 	</tr>
 <?php  endforeach; ?>

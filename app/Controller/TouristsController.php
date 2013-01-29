@@ -69,6 +69,15 @@ class TouristsController extends AppController {
 		$this->set('followings',$tourists);
 	}
 
+	public function followerlist() {
+		$me['id'] = 1;
+		$this->Tourist->contain('Follower');
+
+		$this->Tourist->id = $me['id'];
+		$tourists = $this->Tourist->find('first');
+		$this->set('followers',$tourists);
+	}
+
 	public function unfriend($id = null) {
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
