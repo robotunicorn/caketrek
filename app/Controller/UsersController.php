@@ -62,7 +62,6 @@ class UsersController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
-		$this->helpers[] = 'Media.Uploader';
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Invalid user'));

@@ -24,7 +24,6 @@
 				echo $this->Form->input('username');
 				echo $this->Form->input('password');
 				echo $this->Form->input('email');
-				echo $this->Uploader->iframe('User',$this->request->data['User']['id']);
 			?>
 			</fieldset>
 		</div>
