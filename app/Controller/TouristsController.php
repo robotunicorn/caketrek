@@ -60,6 +60,14 @@ class TouristsController extends AppController {
 		}
 	}
 
+	public function followlist() {
+		$me['id'] = 1;
+		$this->Tourist->contain('Following');
+
+		$following = $this->Tourist->find('all', array('conditions' => array('Tourist.id' => $me['id'])));
+		$this->set('followings', $following);
+	}
+
 /**
  * add method
  *

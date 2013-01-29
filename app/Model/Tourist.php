@@ -17,9 +17,9 @@ class Tourist extends AppModel {
  * @doc http://book.cakephp.org/2.0/en/models/virtual-fields.html
  * @var string
  */
-public $virtualFields = array(
+/*public $virtualFields = array(
 	'full_name' => 'CONCAT(Tourist.first_name, " ", Tourist.last_name)'
-);
+);*/
 
 /**
  * Display field
