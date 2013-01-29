@@ -1,16 +1,18 @@
 <?php
-if(isset($message)){
-	echo $message;
+echo $this->Form->create('Find');
+echo $this->Form->input("search_text",array(
+	'label'=>'Rechercher'
+));
+echo $this->Form->end("Rechercher");
+
+if(isset($results)){
+	
+	if($total!=0){
+		echo 'Il y\'a '.$total.' résultats correspondant à votre recherche';
+		debug($results);
+	}
+	else{
+		echo 'Il n\' aucun résultat correspondant à votre recherche';
+	}
 }
 ?>
-<?php echo $this->Form->create('Find') ?>
-
-<?php echo $this->Form->input("search_text",array(
-	'label'=>'Rechercher'
-));?>
-
-<?php echo $this->Form->end("Rechercher"); ?>
-
-<?php if (isset($results)): ?>
-	Il y'a <?php echo $results['total']; ?> résultats.
-<?php endif ?>

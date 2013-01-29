@@ -13,16 +13,18 @@ class FindsController extends AppController{
 		'Tourists'=>array('bio','first_name','last_name')
 	);
 	public $uses = array();
-	public $total_results = 0;
+	
+	public $total = 0;
 
 /**
 * 	Fonction index() => Traitement des données envoyées par le formulaire
 **/	
 	public function index(){
 
-	foreach($this->tables as $k=>$v){
+	foreach($this->tables as $k=>$v):
 		array_push($this->uses,$k);
-	}
+	endforeach;
+	
 	if(empty($this->data)){
 		//todo
 	}
@@ -33,11 +35,16 @@ class FindsController extends AppController{
 		$entry = strtolower(current($entry['Find']));
 	
 		foreach($this->tables as $k=>$v):
-			
-			$results=$this->getResults($k,$entry,$results,$v);
-			
+			$results=$this->getResults($k,$entry,$results,$v);	
 		endforeach;
-		debug($results); //debug des results		
+
+		foreach ($results as $v):
+		    $this->total+= count($v);
+		endforeach;
+		
+		$d['total']   = $this->total;
+		$d['results'] = $results;
+		$this->set($d);		
 		}
 	}
 
@@ -52,12 +59,11 @@ class FindsController extends AppController{
 	
 		if(!empty($data)){
 			$results[$table]=array();
-			foreach($data as $v2){
-				array_push($results[$table],current($v2));
-				$this->total_results++;
-			}
+			
+			foreach($data as $v2):
+				array_push($results[$table],current($v2));	
+			endforeach;
 		}
-
 	}
 	return $results; //return array de résultats
 	}
