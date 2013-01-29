@@ -121,5 +121,14 @@ class User extends AppModel {
 			'order' => ''
 		)
 	);
+		public $hasMany = array(
+		'Notification' => array(
+			'className' => 'Notification',
+			'foreignKey' => 'tourist_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
 
 }
