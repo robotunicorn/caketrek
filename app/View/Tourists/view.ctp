@@ -21,11 +21,13 @@
 			<?php echo h($tourist['Tourist']['bio']); ?>
 			&nbsp;
 		</dd>
+		<?php if(isset($tourist['Tourist']['thumb'])): ?>
 		<dt><?php echo __('Avatar'); ?></dt>
 		<dd>
 			<?php echo $this->html->image($tourist['Tourist']['thumb']); ?>
 			&nbsp;
 		</dd>
+		<?php endif; ?>
 		<dt><?php echo __('User'); ?></dt>
 		<dd>
 			<?php echo $this->Html->link($tourist['User']['username'], array('controller' => 'users', 'action' => 'view', $tourist['User']['id'])); ?>
