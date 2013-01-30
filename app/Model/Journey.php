@@ -26,6 +26,13 @@ public $displayField = 'name';
 *
 * @var array
 */
+
+public function aftersave ( $created ){
+	if($created){
+		$this->getEventManager()->dispatch(new CakeEvent('Model.Journey.add', $this));
+	}
+}
+
 public $belongsTo = array(
 'Leader' => array(
 'className' => 'Tourist',
