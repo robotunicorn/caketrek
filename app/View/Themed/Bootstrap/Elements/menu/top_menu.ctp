@@ -14,6 +14,9 @@
 					</a>
 					<ul class="dropdown-menu">
 						<li>
+							<?php echo $this->Html->link('id_profile:'.$me['id'], array('controller'=>'users','action' => 'view',$me['id'] )); ?>
+						</li>
+						<li>
 							<?php echo $this->Html->link('Profile', array('controller'=>'users','action' => 'profile' )); ?>
 						</li>
 						<li>
