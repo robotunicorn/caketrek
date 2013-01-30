@@ -34,7 +34,9 @@
 			if( $status[$journeysTourist['JourneysTourist']['status']] == 'applied' ){
 				echo $this->Form->postLink(__('Reject'), array('action' => 'deny', $journeysTourist['JourneysTourist']['id']), null, __('Are you sure you want to leave the journey?', $journeysTourist['JourneysTourist']['id']));
 			}
-			
+			if( $status[$journeysTourist['JourneysTourist']['status']] == 'rejected' ){
+				echo $this->Form->postLink(__('Apply'), array('action' => 'apply', $journeysTourist['JourneysTourist']['id']));
+			}
 			?>
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $journeysTourist['JourneysTourist']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $journeysTourist['JourneysTourist']['id'])); ?>

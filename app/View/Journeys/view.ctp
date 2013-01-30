@@ -1,5 +1,3 @@
-<?php debug($journey); ?>
-
 <div class="journeys view">
 <h2><?php  echo __('Journey'); ?></h2>
 	<dl>
