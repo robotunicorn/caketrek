@@ -1,5 +1,6 @@
 <div class="journeysTourists index">
 	<h2><?php echo __('Journeys Tourists'); ?></h2>
+	<?php $tid=10;?>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
@@ -18,8 +19,20 @@
 		<td>
 			<?php echo $this->Html->link($journeysTourist['Tourist']['first_name'], array('controller' => 'tourists', 'action' => 'view', $journeysTourist['Tourist']['id'])); ?>
 		</td>
-		<td><?php echo h($journeysTourist['JourneysTourist']['status']); ?>&nbsp;</td>
+		<td><?php 
+			if($journeysTourist['JourneysTourist']['status']==0){
+			echo "Invited";
+			}elseif ($journeysTourist['JourneysTourist']['status']==1){
+			echo "Accepted";
+			}elseif ($journeysTourist['JourneysTourist']['status']==2){
+			echo "Apply";
+			}elseif ($journeysTourist['JourneysTourist']['status']==4){
+			echo "Deny";
+			}
+			?>&nbsp;</td>
 		<td class="actions">
+			<?php echo $this->Html->link(__('Accepter'), array('action' => 'accepter', $journeysTourist['JourneysTourist']['id']));?>
+			<?php echo $this->Html->link(__('Refuser'), array('action' => 'refuser', $journeysTourist['JourneysTourist']['id']));?>
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $journeysTourist['JourneysTourist']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $journeysTourist['JourneysTourist']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $journeysTourist['JourneysTourist']['id']), null, __('Are you sure you want to delete # %s?', $journeysTourist['JourneysTourist']['id'])); ?>
