@@ -215,5 +215,32 @@ class JourneysTouristsController extends AppController {
 		$this->Session->setFlash(__('Journeys tourist was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+	
+	public function apply($id = null) {
+		$this->JourneysTourist->id = $id;
+		$this->request->data['JourneysTourist']['status'] = 2;
+		if (!$this->JourneysTourist->exists()) {
+			throw new NotFoundException(__('Invalid journeys tourist'));
+		}if($this->JourneysTourist->save($this->request->data)){
+			$this->Session->setFlash(__('Welcome to the Journey')); // ,'succes'
+			$this->redirect(array('action' => 'index'));
+		}
+		$this->Session->setFlash(__('Journeys tourist was not deleted'));
+		$this->redirect(array('action' => 'index'));
+	}
+	
+	public function reject($id = null) {
+		$this->JourneysTourist->id = $id;
+		$this->request->data['JourneysTourist']['status'] = 3;
+		if (!$this->JourneysTourist->exists()) {
+			throw new NotFoundException(__('Invalid journeys tourist'));
+		}if($this->JourneysTourist->save($this->request->data)){
+			$this->Session->setFlash(__('Welcome to the Journey')); // ,'succes'
+			$this->redirect(array('action' => 'index'));
+		}
+		$this->Session->setFlash(__('Journeys tourist was not deleted'));
+		$this->redirect(array('action' => 'index'));
+	}
+	
 }
 
