@@ -11,7 +11,8 @@ App::uses('Debugger', 'Utility');
 ?>
 
 <div class="hero-unit">
-	<p>Welcome to this pre-packaged CakePHP install.</p>
+	<p>Welcome to this pre-packaged CakePHP install You must be logged in to access this application.</p>
+	<p><?php echo $this->Html->link('Create an account',array('controller'=>'users','action'=>'add'), array('class'=>'btn btn-primary btn-large'))?></p>
 </div>
 
 <div class="row">

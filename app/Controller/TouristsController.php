@@ -27,6 +27,7 @@ class TouristsController extends AppController {
  */
 	public function view($id = null) {
 		$this->Tourist->id = $id;
+
 		$this->Tourist->recursive = 0;
 		$this->Tourist->contain('User','Guide','Badge');
 		if (!$this->Tourist->exists()) {
@@ -135,9 +136,10 @@ class TouristsController extends AppController {
  */
 	public function edit($id = null) {
 
+
 		$this->Tourist->recursive = 0;
 		$this->Tourist->contain('User','Guide','Badge');
-		
+
 		$this->Tourist->id = $id;
 		if (!$this->Tourist->exists()) {
 			throw new NotFoundException(__('Invalid tourist'));
@@ -152,6 +154,7 @@ class TouristsController extends AppController {
 		} else {
 			$this->request->data = $this->Tourist->read(null, $id);
 		}
+
 		$badges = $this->Tourist->Badge->find('list');
 
 		$users = $this->Tourist->User->find('list');
