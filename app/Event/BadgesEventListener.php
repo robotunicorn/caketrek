@@ -12,8 +12,20 @@ class BadgesEventListener implements CakeEventListener{
 	}
 
 	public function userAddJourney($event){
-		var_dump($event);
-		die();
+		$user_id = $event->subject()->data['Journey']['user_id'];
+		$badges = array(
+			8 => 1,
+		);
+		$journey = classRegistry::init('Journey.Journey');
+		$count = $journey->find('count', array(
+			'conditions' => array('Journey.user_id' = user_id)
+			)
+		);
+		foreach($badges as badges_id => $limit){
+			if($count => $limit){
+				$this->unlock($badge_id, $user_id);
+			}
+		} 
 	}
 
 	public function userAddComment($event){
