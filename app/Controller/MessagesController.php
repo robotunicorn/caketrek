@@ -11,11 +11,25 @@ class MessagesController extends AppController {
  * index method
  *
  * @return void
+*
+*Affiche tout les messages d'un utilisateur (inbox)
  */
+	
 	public function index() {
-		$this->Message->recursive = 0;
-		$this->set('messages', $this->paginate());
+	 	$me['id']=1;
+
+		$conversations = $this->Message->find('all', array(
+				'conditions' => array(
+					'or' => array('receiver_id' => $me['id'], 'sender_id' => $me['id'])
+				),
+				'group'=>'Receiver.id, Sender.id',
+				
+    			'order' => array('date DESC')
+		));
+
+		$this->set('conversations', $conversations);
 	}
+
 
 /**
  * view method
@@ -25,12 +39,27 @@ class MessagesController extends AppController {
  * @return void
  */
 	public function view($id = null) {
-		$this->Message->id = $id;
-		if (!$this->Message->exists()) {
-			throw new NotFoundException(__('Invalid message'));
-		}
-		$this->set('message', $this->Message->read(null, $id));
+	 	$me['id']=1;
+
+		$conversation = $this->Message->find('all', array(
+				'conditions' => array(
+					'OR' => array(
+						array('AND' => array('receiver_id' => $me['id'], 'sender_id' => $id )),
+						array('AND' => array('receiver_id' => $id, 'sender_id' => $me['id'] ))
+				),
+				
+    			// 'order' => array('date DESC')
+
+		)));
+
+
+
+
+		$this->set('conversation', $conversation);
 	}
+
+
+	
 
 /**
  * add method

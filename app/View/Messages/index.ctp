@@ -1,50 +1,43 @@
+
+
 <div class="messages index">
-	<h2><?php echo __('Messages'); ?></h2>
+	<h2><?php echo __('Your inbox'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('subject'); ?></th>
-			<th><?php echo $this->Paginator->sort('message'); ?></th>
-			<th><?php echo $this->Paginator->sort('sender_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('receiver_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('date'); ?></th>
+			<th>id</th>
+			<th>sender_id</th>
+			<th>message</th>
+			<th>receiver_id</th>
+			<th>date</th>
+
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
+	
 	<?php
-	foreach ($messages as $message): ?>
+	foreach ($conversations as $msg): ?>
 	<tr>
-		<td><?php echo h($message['Message']['id']); ?>&nbsp;</td>
-		<td><?php echo h($message['Message']['subject']); ?>&nbsp;</td>
-		<td><?php echo h($message['Message']['message']); ?>&nbsp;</td>
+		<td><?php echo h($msg['Message']['id']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($message['Sender']['first_name'], array('controller' => 'tourists', 'action' => 'view', $message['Sender']['id'])); ?>
+			<?php echo $this->Html->link($msg['Sender']['first_name'], array('controller' => 'tourists', 'action' => 'view', $msg['Sender']['id'])); ?>
 		</td>
+		<td><?php echo h($msg['Message']['message']); ?>&nbsp;</td>
+		
 		<td>
-			<?php echo $this->Html->link($message['Receiver']['first_name'], array('controller' => 'tourists', 'action' => 'view', $message['Receiver']['id'])); ?>
+			<?php echo $this->Html->link($msg['Receiver']['first_name'], array('controller' => 'tourists', 'action' => 'view', $msg['Receiver']['id'])); ?>
 		</td>
-		<td><?php echo h($message['Message']['date']); ?>&nbsp;</td>
+		<td><?php echo h($msg['Message']['date']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $message['Message']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $message['Message']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $message['Message']['id']), null, __('Are you sure you want to delete # %s?', $message['Message']['id'])); ?>
+			<?php 	if($msg['Message']['sender_id'] == 1){$view = $msg['Message']['receiver_id'];}
+					else{$view = $msg['Message']['sender_id'];}?>
+			<?php echo $this->Html->link(__('View conversation'), array('action' => 'view', $view)); ?>
+			
 		</td>
 	</tr>
 <?php endforeach; ?>
-	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
+	
 
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
-	</div>
+	</table>
+	
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
@@ -54,3 +47,4 @@
 		<li><?php echo $this->Html->link(__('New Sender'), array('controller' => 'tourists', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
+
