@@ -16,6 +16,7 @@ class UsersController extends AppController {
  * @return void
  */
 	public function index() {
+
 		$this->User->recursive = 0;
 		$this->set('users', $this->paginate());
 	}
@@ -41,6 +42,7 @@ class UsersController extends AppController {
  * @return void
  */
 	public function add() {
+
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {

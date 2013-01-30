@@ -21,7 +21,7 @@
 			<p>e-mail: <?php echo h($user['User']['email']); ?></p>
 			<?php if(isset($user['Tourist']['bio'])): ?>
 				<div class="bio"><?php echo h($user['Tourist']['bio']); ?></div>
-				<p><?php echo $this->Html->link(_('edit'),
+				<p><?php echo $this->Html->link(('edit'),
 					array('controller'=>'tourists', 'action'=>'edit', $user['Tourist']['id']),
 					array('class'=>'btn')); ?></p>
 			<?php endif; ?>

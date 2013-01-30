@@ -6,8 +6,8 @@ class DATABASE_CONFIG {
 		'persistent' => true,
 		'host' => 'localhost',
 		'login' => 'root',
-		'password' => 'root',
-		'database' => 'caketrek_default',
+		'password' => '',
+		'database' => 'caketrek',
 		'encoding' => 'UTF8'
 	);
 }

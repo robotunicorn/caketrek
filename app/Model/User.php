@@ -19,6 +19,13 @@ class User extends AppModel {
  *
  * @var array
  */
+
+	public function aftersave($created){
+		if($created){
+		$this->getEventManager()->dispatch(new CakeEvent('Model.user.add', $this));
+		}
+	}
+	
 	public $validate = array(
 		'username' => array(
 			'notempty' => array(
