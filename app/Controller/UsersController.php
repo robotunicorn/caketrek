@@ -10,6 +10,12 @@ class UsersController extends AppController {
 
 	public $theme = "Bootstrap";
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow('add');
+	}
+
+
 /**
  * index method
  *
@@ -197,4 +203,21 @@ class UsersController extends AppController {
 		$this->Session->setFlash(__('User was not deleted'),'error');
 		$this->redirect(array('action' => 'index'));
 	}
+	
+	public function login() {
+		if ($this->request->is('post')) {
+			if ($this->Auth->login()) {
+				$this->redirect($this->Auth->redirect("/"));
+			} else {
+				$this->Session->setFlash(__('Invalid username or password, try again'),'error');
+			}
+		}
+	}
+	
+	public function logout() {
+		$this->Auth->logout();
+		$this->redirect('/');
+	}
+    
+	
 }
