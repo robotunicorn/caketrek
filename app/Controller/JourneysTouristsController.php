@@ -7,12 +7,14 @@ App::uses('AppController', 'Controller');
  */
 class JourneysTouristsController extends AppController {
 
+	public $status = array(0=>'invited', 1=>'accepted', 2=>'applied',3=>'rejected');
 /**
  * index method
  *
  * @return void
  */
 	public function index() {
+		$this->set('status', $this->status);
 		$this->JourneysTourist->recursive = 0;
 		$this->set('journeysTourists', $this->paginate());
 	}
@@ -25,6 +27,7 @@ class JourneysTouristsController extends AppController {
  * @return void
  */
 	public function view($id = null) {
+		$this->set('status', $this->status);
 		$this->JourneysTourist->id = $id;
 		if (!$this->JourneysTourist->exists()) {
 			throw new NotFoundException(__('Invalid journeys tourist'));
@@ -38,6 +41,7 @@ class JourneysTouristsController extends AppController {
  * @return void
  */
 	public function add() {
+		$this->set('status', $this->status);
 		if ($this->request->is('post')) {
 			$this->JourneysTourist->create();
 			if ($this->JourneysTourist->save($this->request->data)) {
@@ -60,6 +64,7 @@ class JourneysTouristsController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+		$this->set('status', $this->status);
 		$this->JourneysTourist->id = $id;
 		if (!$this->JourneysTourist->exists()) {
 			throw new NotFoundException(__('Invalid journeys tourist'));
@@ -198,4 +203,17 @@ class JourneysTouristsController extends AppController {
 		$this->Session->setFlash(__('Journeys tourist was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+	public function accepted($id = null) {
+		$this->JourneysTourist->id = $id;
+		$this->request->data['JourneysTourist']['status'] = 1;
+		if (!$this->JourneysTourist->exists()) {
+			throw new NotFoundException(__('Invalid journeys tourist'));
+		}if($this->JourneysTourist->save($this->request->data)){
+			$this->Session->setFlash(__('Welcome to the Journey')); // ,'succes'
+			$this->redirect(array('action' => 'index'));
+		}
+		$this->Session->setFlash(__('Journeys tourist was not deleted'));
+		$this->redirect(array('action' => 'index'));
+	}
 }
+
