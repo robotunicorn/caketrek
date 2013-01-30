@@ -100,6 +100,31 @@ VALUES
 /*!40000 ALTER TABLE `badges_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
+# Dump of table groups
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `groups`;
+
+CREATE TABLE `groups` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL DEFAULT '',
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+LOCK TABLES `groups` WRITE;
+/*!40000 ALTER TABLE `groups` DISABLE KEYS */;
+
+INSERT INTO `groups` (`id`, `name`, `created`, `modified`)
+VALUES
+	(1,'admins','2013-01-29 15:49:11','2013-01-29 15:49:11'),
+	(2,'tourists','2013-01-29 15:49:15','2013-01-29 15:49:15'),
+	(3,'guides','2013-01-29 15:49:15','2013-01-29 15:49:15'),
+	(4,'spammers','2013-01-29 15:49:15','2013-01-29 15:49:15');
+
+/*!40000 ALTER TABLE `groups` ENABLE KEYS */;
+UNLOCK TABLES;
 
 # Dump of table guides
 # ------------------------------------------------------------
@@ -233,6 +258,28 @@ CREATE TABLE `tracks` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
+# Dump of table messages
+# ------------------------------------------------------------
+
+CREATE TABLE `messages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `subject` varchar(150) NOT NULL,
+  `message` longtext NOT NULL,
+  `sender_id` int(11) NOT NULL,
+  `receiver_id` int(11) NOT NULL,
+  `date` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Contenu de la table `messages`
+--
+
+INSERT INTO `messages` (`id`, `subject`, `message`, `sender_id`, `receiver_id`, `date`) VALUES
+(1, 'salut', 'ceci est un test', 2, 1, '2013-01-28 18:54:00'),
+(3, 'Vision d''horreur', 'As tu aperçus l''autre soir le petit poucet vert ?', 1, 4, '2013-01-28 19:58:00'),
+(4, 'Test coucou 2', 'ceci est un joli test', 2, 1, '2013-01-29 15:23:00');
+
 
 # Dump of table users
 # ------------------------------------------------------------
@@ -246,37 +293,41 @@ CREATE TABLE `users` (
   `email` varchar(200) NOT NULL,
   `created` datetime DEFAULT NULL,
   `updated` datetime DEFAULT NULL,
+  `group_id` int(11) DEFAULT '2',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`id`,`username`,`password`,`email`,`created`,`updated`)
+
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `created`, `updated`, `group_id`)
 VALUES
-	(1,'gasp','pass','gaspard@gmail.com','2013-01-24 13:29:28','2013-01-25 10:59:58'),
-	(2,'john','pass','jo@lamo.uk','2013-01-24 13:29:55','2013-01-24 16:30:15'),
-	(3,'martha','pass','martha@yahoo.com','2013-01-24 18:18:16','2013-01-24 18:18:16'),
-	(4,'joseph','pass','joseh@yahoo.com','2013-01-24 18:19:05','2013-01-24 18:19:05'),
-	(5,'veteran','pass','veteranmartha@yahoo.com','2013-01-24 18:19:34','2013-01-24 18:19:34'),
-	(6,'patrick','pass','patrick@yahoo.com','2013-01-24 18:20:25','2013-01-24 18:20:25'),
-	(7,'emile','pass','emile@yahoo.com','2013-01-24 18:57:35',NULL),
-	(8,'ernesto','pass','ernesto@yahoo.com','2013-01-24 18:57:49',NULL),
-	(9,'peter','pass','peter@yahoo.com','2013-01-24 18:57:53',NULL),
-	(10,'beber','pass','beber@yahoo.com','2013-01-24 18:57:57',NULL),
-	(11,'jack','pass','jack@yahoo.com','2013-01-24 18:58:00',NULL),
-	(12,'greg','pass','greg@yahoo.com','2013-01-24 18:58:15',NULL),
-	(13,'emilio','pass','emilio@yahoo.com','2013-01-24 18:58:29',NULL),
-	(14,'michael','pass','michael@yahoo.com','2013-01-24 18:58:45',NULL),
-	(15,'juan','pass','juan@yahoo.com','2013-01-24 18:59:07',NULL),
-	(16,'wolfgang','pass','wolfgang@yahoo.com','2013-01-24 18:59:21',NULL),
-	(17,'dieter','pass','dieter@yahoo.com','2013-01-24 18:59:41',NULL),
-	(18,'sam','pass','sam@yahoo.com','2013-01-24 18:59:51',NULL),
-	(19,'micah','pass','micah@yahoo.com','2013-01-24 19:00:06',NULL),
-	(20,'ferdinand','pass','ferdinand@yahoo.com','2013-01-24 19:00:33',NULL),
-	(21,'jekyll','pass','jekyll@yahoo.com','2013-01-24 19:00:49',NULL),
-	(22,'hide','pass','hide@yahoo.com','2013-01-24 19:01:32',NULL),
-	(23,'sergey','pass','sergey@yahoo.com','2013-01-24 19:33:30','2013-01-24 19:33:30'),
-	(24,'maria','pass','maria@yahoo.com','2013-01-24 19:36:44','2013-01-24 19:36:44');
+	(1,'gasp','pass','gaspard@gmail.com','2013-01-24 13:29:28','2013-01-25 10:59:58',1),
+	(2,'john','pass','jo@lamo.uk','2013-01-24 13:29:55','2013-01-24 16:30:15',NULL),
+	(3,'martha','pass','martha@yahoo.com','2013-01-24 18:18:16','2013-01-24 18:18:16',NULL),
+	(4,'joseph','pass','joseh@yahoo.com','2013-01-24 18:19:05','2013-01-24 18:19:05',NULL),
+	(5,'veteran','pass','veteranmartha@yahoo.com','2013-01-24 18:19:34','2013-01-24 18:19:34',NULL),
+	(6,'patrick','pass','patrick@yahoo.com','2013-01-24 18:20:25','2013-01-24 18:20:25',NULL),
+	(7,'emile','pass','emile@yahoo.com','2013-01-24 18:57:35',NULL,NULL),
+	(8,'ernesto','pass','ernesto@yahoo.com','2013-01-24 18:57:49',NULL,NULL),
+	(9,'peter','pass','peter@yahoo.com','2013-01-24 18:57:53',NULL,NULL),
+	(10,'beber','pass','beber@yahoo.com','2013-01-24 18:57:57',NULL,NULL),
+	(11,'jack','pass','jack@yahoo.com','2013-01-24 18:58:00',NULL,NULL),
+	(12,'greg','pass','greg@yahoo.com','2013-01-24 18:58:15',NULL,NULL),
+	(13,'emilio','pass','emilio@yahoo.com','2013-01-24 18:58:29',NULL,NULL),
+	(14,'michael','pass','michael@yahoo.com','2013-01-24 18:58:45',NULL,NULL),
+	(15,'juan','pass','juan@yahoo.com','2013-01-24 18:59:07',NULL,NULL),
+	(16,'wolfgang','pass','wolfgang@yahoo.com','2013-01-24 18:59:21',NULL,NULL),
+	(17,'dieter','pass','dieter@yahoo.com','2013-01-24 18:59:41',NULL,NULL),
+	(18,'sam','pass','sam@yahoo.com','2013-01-24 18:59:51',NULL,NULL),
+	(19,'micah','pass','micah@yahoo.com','2013-01-24 19:00:06',NULL,NULL),
+	(20,'ferdinand','pass','ferdinand@yahoo.com','2013-01-24 19:00:33',NULL,NULL),
+	(21,'jekyll','pass','jekyll@yahoo.com','2013-01-24 19:00:49',NULL,NULL),
+	(22,'hide','pass','hide@yahoo.com','2013-01-24 19:01:32',NULL,NULL),
+	(23,'sergey','pass','sergey@yahoo.com','2013-01-24 19:33:30','2013-01-24 19:33:30',NULL),
+	(24,'maria','pass','maria@yahoo.com','2013-01-24 19:36:44','2013-01-24 19:36:44',NULL),
+	(25,'admin','5751c23ea765ca65fd4c2e7f4aae4b7189bc5587','admin@admin.com','2013-01-29 15:50:59','2013-01-29 15:50:59',1),
+	(26,'user','679befe1c3f6278a9c6be45eab1ff4d1249424ef','user@user.net','2013-01-29 15:53:37','2013-01-29 15:53:37',2);
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
