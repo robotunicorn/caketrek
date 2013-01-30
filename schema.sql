@@ -87,11 +87,17 @@ CREATE TABLE IF NOT EXISTS `badges_users` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
+INSERT INTO `badges_users` (`id`, `badge_id`, `user_id`) VALUES
+(1, 1, 1),
+(2, 3, 1),
+(3, 3, 2),
+(4, 1, 4),
+(5, 2, 1);
+
 --
 -- Contenu de la table `badges_users`
 --
 
-<<<<<<< HEAD
 # Dump of table groups
 # ------------------------------------------------------------
 
@@ -103,7 +109,7 @@ CREATE TABLE `groups` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 LOCK TABLES `groups` WRITE;
 /*!40000 ALTER TABLE `groups` DISABLE KEYS */;
@@ -117,14 +123,7 @@ VALUES
 
 /*!40000 ALTER TABLE `groups` ENABLE KEYS */;
 UNLOCK TABLES;
-=======
-INSERT INTO `badges_users` (`id`, `badge_id`, `user_id`) VALUES
-(1, 1, 1),
-(2, 3, 1),
-(3, 3, 2),
-(4, 1, 4),
-(5, 2, 1);
->>>>>>> new sql schema, auto_increment +tracks +zones
+
 
 -- --------------------------------------------------------
 
@@ -171,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `journeys` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Contenu de la table `journeys`
@@ -202,7 +201,7 @@ CREATE TABLE IF NOT EXISTS `medias` (
   PRIMARY KEY (`id`),
   KEY `ref` (`ref`),
   KEY `ref_id` (`ref_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `medias`
@@ -269,13 +268,17 @@ CREATE TABLE IF NOT EXISTS `tracks` (
   `zone_id` int(11) DEFAULT NULL,
   `journey_count` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Contenu de la table `tracks`
 --
 
-<<<<<<< HEAD
+INSERT INTO `tracks` (`id`, `name`, `description`, `duration`, `zone_id`, `journey_count`) VALUES
+(1, ' Kham', 'micum vel bellum patriae inferentem sequi; quod quidem, ut res ire coepit, haud scio an aliquando futurum sit. Mihi autem non minori curae est, qualis res publica post mortem meam futura, quam qualis hodie sit.', 3, 1, 3),
+(2, 'Tassili du Hoggar', 'non est sed potius supplicio omni vindicanda est, ut ne quis concessum putet amicum vel bellum patriae inferentem sequi; quod quidem, ut res ire coepit, haud scio an aliquando futurum sit. Mihi autem non minori curae est', 5, 2, 5);
+
+
 # Dump of table messages
 # ------------------------------------------------------------
 
@@ -287,7 +290,7 @@ CREATE TABLE `messages` (
   `receiver_id` int(11) NOT NULL,
   `date` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Contenu de la table `messages`
@@ -298,11 +301,6 @@ INSERT INTO `messages` (`id`, `subject`, `message`, `sender_id`, `receiver_id`, 
 (3, 'Vision d''horreur', 'As tu aperçus l''autre soir le petit poucet vert ?', 1, 4, '2013-01-28 19:58:00'),
 (4, 'Test coucou 2', 'ceci est un joli test', 2, 1, '2013-01-29 15:23:00');
 
-=======
-INSERT INTO `tracks` (`id`, `name`, `description`, `duration`, `zone_id`, `journey_count`) VALUES
-(1, ' Kham', 'micum vel bellum patriae inferentem sequi; quod quidem, ut res ire coepit, haud scio an aliquando futurum sit. Mihi autem non minori curae est, qualis res publica post mortem meam futura, quam qualis hodie sit.', 3, 1, 3),
-(2, 'Tassili du Hoggar', 'non est sed potius supplicio omni vindicanda est, ut ne quis concessum putet amicum vel bellum patriae inferentem sequi; quod quidem, ut res ire coepit, haud scio an aliquando futurum sit. Mihi autem non minori curae est', 5, 2, 5);
->>>>>>> new sql schema, auto_increment +tracks +zones
 
 -- --------------------------------------------------------
 
@@ -319,7 +317,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated` datetime DEFAULT NULL,
   `group_id` int(11) DEFAULT '2',
   PRIMARY KEY (`id`)
-<<<<<<< HEAD
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 LOCK TABLES `users` WRITE;
@@ -364,73 +361,15 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `zones`;
 
 CREATE TABLE `zones` (
-  `id` int(11) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+	`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+	`name` varchar(255) NOT NULL,
+	`description` text NOT NULL,
+	PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 
-
-
-
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-=======
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
-
---
--- Contenu de la table `users`
---
-
-INSERT INTO `users` (`id`, `username`, `password`, `email`, `created`, `updated`) VALUES
-(1, 'gasp', 'pass', 'gaspard@gmail.com', '2013-01-24 13:29:28', '2013-01-25 10:59:58'),
-(2, 'john', 'pass', 'jo@lamo.uk', '2013-01-24 13:29:55', '2013-01-24 16:30:15'),
-(3, 'martha', 'pass', 'martha@yahoo.com', '2013-01-24 18:18:16', '2013-01-24 18:18:16'),
-(4, 'joseph', 'pass', 'joseh@yahoo.com', '2013-01-24 18:19:05', '2013-01-24 18:19:05'),
-(5, 'veteran', 'pass', 'veteranmartha@yahoo.com', '2013-01-24 18:19:34', '2013-01-24 18:19:34'),
-(6, 'patrick', 'pass', 'patrick@yahoo.com', '2013-01-24 18:20:25', '2013-01-24 18:20:25'),
-(7, 'emile', 'pass', 'emile@yahoo.com', '2013-01-24 18:57:35', NULL),
-(8, 'ernesto', 'pass', 'ernesto@yahoo.com', '2013-01-24 18:57:49', NULL),
-(9, 'peter', 'pass', 'peter@yahoo.com', '2013-01-24 18:57:53', NULL),
-(10, 'beber', 'pass', 'beber@yahoo.com', '2013-01-24 18:57:57', NULL),
-(11, 'jack', 'pass', 'jack@yahoo.com', '2013-01-24 18:58:00', NULL),
-(12, 'greg', 'pass', 'greg@yahoo.com', '2013-01-24 18:58:15', NULL),
-(13, 'emilio', 'pass', 'emilio@yahoo.com', '2013-01-24 18:58:29', NULL),
-(14, 'michael', 'pass', 'michael@yahoo.com', '2013-01-24 18:58:45', NULL),
-(15, 'juan', 'pass', 'juan@yahoo.com', '2013-01-24 18:59:07', NULL),
-(16, 'wolfgang', 'pass', 'wolfgang@yahoo.com', '2013-01-24 18:59:21', NULL),
-(17, 'dieter', 'pass', 'dieter@yahoo.com', '2013-01-24 18:59:41', NULL),
-(18, 'sam', 'pass', 'sam@yahoo.com', '2013-01-24 18:59:51', NULL),
-(19, 'micah', 'pass', 'micah@yahoo.com', '2013-01-24 19:00:06', NULL),
-(20, 'ferdinand', 'pass', 'ferdinand@yahoo.com', '2013-01-24 19:00:33', NULL),
-(21, 'jekyll', 'pass', 'jekyll@yahoo.com', '2013-01-24 19:00:49', NULL),
-(22, 'hide', 'pass', 'hide@yahoo.com', '2013-01-24 19:01:32', NULL),
-(23, 'sergey', 'pass', 'sergey@yahoo.com', '2013-01-24 19:33:30', '2013-01-24 19:33:30'),
-(24, 'maria', 'pass', 'maria@yahoo.com', '2013-01-24 19:36:44', '2013-01-24 19:36:44');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `zones`
---
-
-CREATE TABLE IF NOT EXISTS `zones` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `description` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
-
---
--- Contenu de la table `zones`
---
 
 INSERT INTO `zones` (`id`, `name`, `description`) VALUES
 (1, 'Tibet oriental', 'Quare talis improborum consensio non modo excusatione amicitiae tegenda non est sed potius'),
 (2, ' Sahara algérien', 'supplicio omni vindicanda est, ut ne quis concessum putet amicum vel bellum patriae inferentem sequi; quod quidem, ut res ire coepit, haud scio a');
-
->>>>>>> new sql schema, auto_increment +tracks +zones
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
