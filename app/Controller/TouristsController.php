@@ -47,18 +47,18 @@ class TouristsController extends AppController {
  * @return void
  */
 	public function follow($to_follow_id) {
-		$me['id'] = 1;
-		$data['Friends']['follower_id'] = $me['id']; // Ici on prend l'id du user connecté dans la session du component Auth
+		$data['Friends']['follower_id'] = $this->Auth->user('Tourist.id'); // Ici on prend l'id du user connecté dans la session du component Auth
 		$data['Friends']['following_id'] = $to_follow_id;
 
 		/**
 		*
 		* Containable doesn't work in this case
 		* $this->Tourist->contain('Following');
+		* $this->Auth->user('Tourist.id') => Contient le tourist ID
 		**/
 
 		$this->Tourist->bindModel(array('hasOne'=>array('Friends')),false);
-		$validate = $this->Tourist->Friend->find('all', array('conditions' => array('following_id' => $to_follow_id , 'follower_id' => $me['id'])));
+		$validate = $this->Tourist->Friend->find('all', array('conditions' => array('following_id' => $to_follow_id , 'follower_id' => $this->Auth->user('Tourist.id'))));
 
 		if(empty($validate))
 		{
@@ -74,20 +74,30 @@ class TouristsController extends AppController {
 	}
 
 	public function followlist() {
-		$me['id'] = 1;
-		$this->Tourist->contain('Following');
-
-		$this->Tourist->id = $me['id'];
-		$tourists = $this->Tourist->find('first');
+		$tourists = $this->Tourist->find('first', array(
+			'conditions' => array('Tourist.id'=>$this->Auth->user('Tourist.id')),
+		    'contain'=>array(
+		    		'Following',
+		            'Friend' => array(
+		                
+		            )
+		        )
+		    )
+		);
 		$this->set('followings',$tourists);
 	}
 
 	public function followerlist() {
-		$me['id'] = 1;
-		$this->Tourist->contain('Follower');
-
-		$this->Tourist->id = $me['id'];
-		$tourists = $this->Tourist->find('first');
+		$tourists = $this->Tourist->find('first', array(
+			'conditions' => array('Tourist.id'=>$this->Auth->user('Tourist.id')),
+		    'contain'=>array(
+		    		'Follower',
+		            'Friend' => array(
+		                
+		            )
+		        )
+		    )
+		);
 		$this->set('followers',$tourists);
 	}
 
