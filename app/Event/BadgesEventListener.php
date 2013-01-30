@@ -5,7 +5,8 @@ class BadgesEventListener implements CakeEventListener{
 
 	public function implementedEvents(){
 		return array(
-			'Model.Comment.add' => 'userAddComment'
+			'Plugin.Comment.add' => 'userAddComment'
+			'Model.User.add' => 'userAddUser'
 			);
 	}
 
@@ -23,12 +24,6 @@ class BadgesEventListener implements CakeEventListener{
 				$this->unlock($badge_id, $user_id);
 			}
 		}
-	}
-
-	public function userAddUser($event){
-		return array(
-			'Model.Badge.add' => 'userAddBadge'
-			);
 	}
 
 	public function userAddBadge($event){
