@@ -26,9 +26,9 @@
 			<?php echo h($tourist['Tourist']['media_id']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('User'); ?></dt>
+		<dt><?php echo __('User Id'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($tourist['User']['username'], array('controller' => 'users', 'action' => 'view', $tourist['User']['id'])); ?>
+			<?php echo h($tourist['Tourist']['user_id']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
@@ -42,46 +42,6 @@
 			&nbsp;
 		</dd>
 	</dl>
-	<div>
-		Badges :
-	<?php
-	for ($i=0; $i < count($tourist['Badge']); $i++) { 
-		echo $tourist['Badge'][$i]['label'].',';
-	}
-	?>
-
-	</div>
-
-		<div>
-		Commentaires :
-
-	<?php
-	for ($i=0; $i < count($tourist['Comment']); $i++) {
-		echo $tourist['Comment'][$i]['comment'].',';
-	}
-	?>
-
-	</div>
-
-	<div class="comments form">
-		<?php echo $this->Form->create('Comment', array('url' => '/comments/add')); ?>
-
-	<fieldset>
-		<legend><?php echo __('Add Comment'); ?></legend>
-			
-		<?php
-			
-		echo $this->Form->input('comment');
-		echo $this->Form->input('note');
-		echo $this->Form->hidden('object_id', $options = array('value' => $tourist['Tourist']['id']));
-		echo $this->Form->hidden('object_type', $options = array('value' => 'Tourist'));
-
-		?>
-	</fieldset>
-
-		<?php echo $this->Form->end(__('Submit')); ?>
-	</div>
-	
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
@@ -90,7 +50,5 @@
 		<li><?php echo $this->Form->postLink(__('Delete Tourist'), array('action' => 'delete', $tourist['Tourist']['id']), null, __('Are you sure you want to delete # %s?', $tourist['Tourist']['id'])); ?> </li>
 		<li><?php echo $this->Html->link(__('List Tourists'), array('action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Tourist'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
