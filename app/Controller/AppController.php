@@ -33,4 +33,5 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 	public $theme = "default";
+	public $helpers = array ('Comment.Comment');
 }

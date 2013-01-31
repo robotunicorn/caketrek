@@ -32,7 +32,7 @@ public $virtualFields = array(
 		TODO try public $displayField = 'full_name';
 	*/
 
-	public $actsAs = array('Containable','Badge.Badge');
+	public $actsAs = array('Containable','Badge.Badge','Comment.Comment');
 	
 
 /**
@@ -65,13 +65,6 @@ public $virtualFields = array(
 		)
 	);
 
-	public $hasMany = array(
-        'Comment' => array(
-            'className'     => 'Comment',
-            'foreignKey'    => 'object_id',
-            'conditions'    => array('Comment.object_type' => 'Tourist','Comment.object_id' => 'Tourist.id'),
-            'order'         => '',
-        )
-    );
+
 	
 }

@@ -52,31 +52,12 @@
 
 	</div>
 
-	<div>
-		Commentaires :
-	<?php
-	for ($i=0; $i < count($tourist['Comment']); $i++) { 
-		echo $tourist['Comment'][$i]['comment'].',';
-	}
-	?>
 
-	</div>
 
-	<div class="comments form">
-	<?php echo $this->Form->create('Comment', array('url' => '/comments/add')); ?>
-		<fieldset>
-			<legend><?php echo __('Add Comment'); ?></legend>
-		<?php
-			echo $this->Form->input('comment');
-			echo $this->Form->input('note');
-			echo $this->Form->hidden('object_id', $options = array('value' => $tourist['Tourist']['id']));
-			echo $this->Form->hidden('object_type', $options = array('value' => 'Tourist'));
+	<?php echo $this->Comment->view($tourist); ?>
+	<?php echo $this->Comment->add($tourist,$tourist['Tourist']); ?>
 
-		?>
-		</fieldset>
-	<?php echo $this->Form->end(__('Submit')); ?>
-	</div>
-	
+
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
