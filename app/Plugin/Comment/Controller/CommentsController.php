@@ -28,7 +28,13 @@ class CommentsController extends AppController {
 			} else {
 				$this->Session->setFlash(__('The comment could not be saved. Please, try again.'));
 			}
+			return $this->redirect($this->referer());
 		}
+	}
+
+	public function delete($id){
+		$this->Comment->delete($id);
+		return $this->redirect($this->referer());
 	}
 
 }

@@ -8,10 +8,14 @@ class CommentHelper extends AppHelper {
 		if ($model['Comment']){
 	?>	
 		<div>
-			Commentaires :
+			Commentaires :<br>
 		<?php
-		for ($i=0; $i < count($model['Comment']); $i++) { 
-			echo $model['Comment'][$i]['comment'].',';
+		for ($i=0; $i < count($model['Comment']); $i++) {
+			$comment = $model['Comment'][$i];
+			echo $comment['comment'];
+			echo $this->_View->element('delete', array('comment' => $comment),array('plugin' => 'Comment'));
+			echo "<br>";
+
 		}
 		?>
 		</div>
