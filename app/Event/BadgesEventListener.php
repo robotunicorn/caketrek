@@ -8,18 +8,18 @@ class BadgesEventListener implements CakeEventListener{
 			'Plugin.Comment.add' => 'userAddComment',
 			'Model.User.add' => 'userAddUser',
 			'Model.Journey.add' => 'userAddJourney'
-			);
+		);
 	}
 
 	public function userAddJourney($event){
-		$user_id = $event->subject()->data['Journey']['user_id'];
+		$user_id = $event->subject()->data['journeys']['user_id'];
 		$badges = array(
 			9 => 1,
 			3 => 10,
 		);
-		$journey = classRegistry::init('Journey.Journey');
+		$journey = classRegistry::init('journeys.journeys');
 		$count = $journey->find('count', array(
-			'conditions' => array('Journey.user_id' => $user_id)
+			'conditions' => array('journeys.user_id' => $user_id)
 			)
 		);
 		foreach($badges as $badge_id => $limit){
@@ -27,6 +27,7 @@ class BadgesEventListener implements CakeEventListener{
 				$this->unlock($badge_id, $user_id);
 			}
 		}
+		die();
 	}
 
 	public function userAddComment($event){
@@ -50,7 +51,7 @@ class BadgesEventListener implements CakeEventListener{
 
 	}
 
-	public function unlock($badges_id, $user_id){
+	public function unlock($badge_id, $user_id){
 		$badgesUser = Classregistery::init('badgesUser');
 		$badge = $badgesUser->find('first', array(
 			'conditions' => array('badgesUser.badge_id' => $badge_id, 'badgesUser.user_id' =>

@@ -13,8 +13,10 @@ class JourneysTouristsController extends AppController {
 * @return void
 */
 public function index() {
-$this->JourneysTourist->recursive = 0;
-$this->set('journeysTourists', $this->paginate());
+	App::uses('BadgesEventListener','Event');
+	$this->JourneysTourist->getEventManager()->attach(new BadgesEventListener());
+	$this->JourneysTourist->recursive = 0;
+	$this->set('journeysTourists', $this->paginate());
 }
 
 /**
@@ -25,11 +27,11 @@ $this->set('journeysTourists', $this->paginate());
 * @return void
 */
 public function view($id = null) {
-$this->JourneysTourist->id = $id;
-if (!$this->JourneysTourist->exists()) {
-throw new NotFoundException(__('Invalid journeys tourist'));
-}
-$this->set('journeysTourist', $this->JourneysTourist->read(null, $id));
+	$this->JourneysTourist->id = $id;
+	if (!$this->JourneysTourist->exists()) {
+		throw new NotFoundException(__('Invalid journeys tourist'));
+	}
+	$this->set('journeysTourist', $this->JourneysTourist->read(null, $id));
 }
 
 /**
@@ -38,18 +40,18 @@ $this->set('journeysTourist', $this->JourneysTourist->read(null, $id));
 * @return void
 */
 public function add() {
-if ($this->request->is('post')) {
-$this->JourneysTourist->create();
-if ($this->JourneysTourist->save($this->request->data)) {
-$this->Session->setFlash(__('The journeys tourist has been saved'));
-$this->redirect(array('action' => 'index'));
-} else {
-$this->Session->setFlash(__('The journeys tourist could not be saved. Please, try again.'));
-}
-}
-$journeys = $this->JourneysTourist->Journey->find('list');
-$tourists = $this->JourneysTourist->Tourist->find('list');
-$this->set(compact('journeys', 'tourists'));
+	if ($this->request->is('post')) {
+		$this->JourneysTourist->create();
+		if ($this->JourneysTourist->save($this->request->data)) {
+			$this->Session->setFlash(__('The journeys tourist has been saved'));
+			$this->redirect(array('action' => 'index'));
+		} else {
+			$this->Session->setFlash(__('The journeys tourist could not be saved. Please, try again.'));
+		}
+	}
+	$journeys = $this->JourneysTourist->Journey->find('list');
+	$tourists = $this->JourneysTourist->Tourist->find('list');
+	$this->set(compact('journeys', 'tourists'));
 }
 
 /**
