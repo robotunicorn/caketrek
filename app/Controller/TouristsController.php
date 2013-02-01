@@ -64,11 +64,11 @@ public $theme = "Bootstrap";
 		{
 			$this->Tourist->Friends->create();
 			$this->Tourist->Friends->save($data);
-			$this->Session->setFlash(__('Tourist Followed'));
+			$this->Session->setFlash(__('Tourist Followed'),'success');
 			$this->redirect(array('action' => 'index'));
 		}
 		else {
-		  	$this->Session->setFlash(__('You already follow that tourist'));
+		  	$this->Session->setFlash(__('You already follow that tourist'),'error');
 			$this->redirect(array('action' => 'index'));
 		}
 	}
@@ -110,7 +110,7 @@ public $theme = "Bootstrap";
 
 		}
 		if ($this->Tourist->Friend->delete()) {
-			$this->Session->setFlash(__('No longer friends'));
+			$this->Session->setFlash(__('No longer friends'),'success');
 			$this->redirect(Controller::referer());
 		}
 		$this->Session->setFlash(__('Frienship was not deleted'));
