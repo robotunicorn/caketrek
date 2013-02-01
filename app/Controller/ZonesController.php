@@ -12,6 +12,9 @@ class ZonesController extends AppController {
  *
  * @return void
  */
+	
+	var $uses = array('Zone','Track');
+	
 	public function index() {
 		$this->Zone->recursive = 0;
 		$this->set('zones', $this->paginate());
@@ -186,4 +189,5 @@ class ZonesController extends AppController {
 		$this->Session->setFlash(__('Zone was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+	
 }
