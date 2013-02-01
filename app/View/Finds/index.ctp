@@ -1,6 +1,3 @@
-<?php $current_page = strtolower($this->viewPath); ?>
-
-
 <style type="text/css" media="screen">
 	.search-area{
 		position:relative;
@@ -19,8 +16,7 @@
 	}
 	.search-area .results li{
 		display:none; 
-		position:relative;
-		width:100%;
+		position:relative
 	}
 	.search-area .results li .private{
 		color:#dc0f18; 
@@ -29,8 +25,7 @@
 	.search-area .results li.search-error{
 		padding:10px;
 		display:block;
-		font-weight:bold;
-		color:#000;
+		font-weight:bold
 	}
 	.search-area .results li span.displayfield{
 		width:130px; 
@@ -51,8 +46,7 @@
 	.search-area .results #more a{
 		border:none; 
 		opacity:0.7; 
-		font-size:12px;
-		color:#4395e1;
+		font-size:12px
 	}
 	.search-area .results{
 		position:absolute;
@@ -80,7 +74,7 @@ $(document).ready(function(){
 	function randOrd(){
 	return (Math.round(Math.random())-0.5); }
 	colors.sort( randOrd );
-
+	
 	/**
 	*  Input effects
 	**/
@@ -93,16 +87,16 @@ $(document).ready(function(){
 			$(this).val('type to search...');}
 	})
 	$('.search-input').keyup(function(){
-
+		
 		$('.results').html('');
 		$('.results').stop().animate({
 	    opacity: 1}, 500);
-
+	
 		/**
 		*  Traitement entrée
 		**/
 		var searchtext = $(this).val();
-
+		
 		if(searchtext != '' && searchtext != ' '){
 		$.get("finds/ajaxProcess?entry="+searchtext,function(data) {
 		if(data == '[]'){
@@ -128,7 +122,7 @@ $(document).ready(function(){
 				});
 				i++;
 	      	});
-
+			
 			/**
 			*  Traitement du nombre d'items
 			**/		
@@ -164,97 +158,19 @@ $(document).ready(function(){
 	});
 });
 </script>
-
-
-
-<div class="navbar navbar-fixed-top">
-	<div class="navbar-inner">
-		<div class="container">
-			<ul class="nav pull-right connect">
-				<li class="divider-vertical"></li>
-			
-				<?php if($me['id'] != 0) :?>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<?php echo $me['username']; ?>
-						<b class="caret"></b>
-					</a>
-					<ul class="dropdown-menu">
-						<li>
-							<?php echo $this->Html->link('id_profile:'.$me['id'], array('controller'=>'users','action' => 'view',$me['id'] )); ?>
-						</li>
-						<li>
-							<?php echo $this->Html->link('Profile', array('controller'=>'users','action' => 'profile' )); ?>
-						</li>
-						<li>
-							<?php echo $this->Html->link('Settings', array('controller'=>'users','action' => 'settings' )); ?>
-						</li>
-						<li>
-							<?php echo $this->Html->link('Notifications', array('controller'=>'Notifications','action' => 'index' )); ?>
-						</li>
-						<li>
-							<?php echo $this->Html->link(__('List Followers'), array('controller'=>'tourists', 'action' => 'followerlist')); ?> 
-						</li>
-						<li>
-							<?php echo $this->Html->link(__('People I follow'), array('controller'=>'tourists','action' => 'followlist')); ?> 
-						</li>
-						<li>
-							<?php echo $this->Html->link('Logout', array('controller'=>'users','action' => 'logout' )); ?>
-						</li>
-
-					</ul>
-				</li>
-				<?php else: ?>
-					<li><?php echo $this->Html->link('Login', array('controller' => 'users', 'action' => 'login')); ?></li>
-					<li class="divider-vertical"></li>
-					<li><?php echo $this->Html->link('Signup', array('controller' => 'users', 'action' => 'add')); ?></li>
-				
-				<?php endif; ?>
-				<li class="search-area">
-				<?php
-				echo $this->Form->create('Find');
-				echo $this->Form->input("search_text",array(
-					'label'=>false,
-					'value'=>'type to search...',
-					'id'=>'search-'.rand(),
-					'name'=>'search-'.rand(),
-					'class'=>'search-input'
-				));
-				echo $this->Form->end();
-				?>
-				<ul class="results nav nav-tabs nav-stacked search-lis">
-				</ul>
-				</li>
-		</ul>
-		
-			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-				
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</a>
-			
-			<?php echo $this->Html->link('caketrek', array('controller'=>'pages','action'=>'home'), array('class'=>'brand')); ?>				
-			<div class="nav-collapse">
-				<ul class="nav">
-					<li <?php if($current_page=="pages"){echo'class="active"';} ?>>
-						<?php echo $this->Html->link('PagesController', array('controller' => 'pages', 'action' => 'index')); ?>
-					</li>
-					<li <?php if($current_page=="users"){echo'class="active"';} ?>>
-						<?php echo $this->Html->link('UsersController', array('controller' => 'users', 'action' => 'index')); ?>
-					</li>
-					<li <?php if($current_page=="badges"){echo'class="active"';} ?>>
-						<?php echo $this->Html->link('BadgesController', array('controller' => 'badges', 'action' => 'index')); ?>
-					</li>
-					<li <?php if($current_page=="tourists"){echo'class="active"';} ?>>
-						<?php echo $this->Html->link('TouristsController', array('controller' => 'tourists', 'action' => 'index')); ?>
-					</li>
-					<li <?php if($current_page=="guides"){echo'class="active"';} ?>>
-						<?php echo $this->Html->link('GuidesController', array('controller' => 'guides', 'action' => 'index')); ?>
-					</li>
-
-				</ul>
-			</div>
-		</div>
-	</div>
+	
+<div class="search-area">
+<?php
+echo $this->Form->create('Find');
+echo $this->Form->input("search_text",array(
+	'label'=>false,
+	'value'=>'type to search...',
+	'id'=>'search-'.rand(),
+	'name'=>'search-'.rand(),
+	'class'=>'search-input'
+));
+echo $this->Form->end();
+?>
+<ul class="results nav nav-tabs nav-stacked search-lis">
+</ul>
 </div>
