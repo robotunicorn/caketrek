@@ -125,6 +125,17 @@ VALUES
 UNLOCK TABLES;
 
 
+# Dump of table friends
+# ------------------------------------------------------------
+
+CREATE TABLE `friends` (
+  `ami_from` int(11) NOT NULL,
+  `ami_to` int(11) NOT NULL,
+  `ami_confirm` int(11) NOT NULL,
+  `ami_date` datetime NOT NULL,
+  PRIMARY KEY (`ami_to`,`ami_from`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 -- --------------------------------------------------------
 
 --
