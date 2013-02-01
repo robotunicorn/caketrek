@@ -8,7 +8,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</a>
-			<?php echo $this->Html->link('caketrek', array('controller'=>'pages','action'=>'home'), array('class'=>'brand')); ?>
+			<?php echo $this->Html->link('caketrek', array('controller'=>'pages','action'=>'home'), array('class'=>'brand')); ?>				
 			<div class="nav-collapse">
 				<ul class="nav">
 					<li <?php if($current_page=="pages"){echo'class="active"';} ?>>
@@ -25,6 +25,9 @@
 					</li>
 					<li <?php if($current_page=="guides"){echo'class="active"';} ?>>
 						<?php echo $this->Html->link('GuidesController', array('controller' => 'guides', 'action' => 'index')); ?>
+					</li>
+					<li <?php if($current_page=="finds"){echo'class="active"';} ?>>
+					<?php echo $this->Html->link('FindsController', array('controller' => 'finds', 'action' => 'index')); ?>
 					</li>
 
 				</ul>
