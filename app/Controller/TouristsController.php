@@ -14,6 +14,7 @@ class TouristsController extends AppController {
 */
 public function index() {
 $this->Tourist->recursive = 0;
+$this->Tourist->contain('User','Guide','Badge');
 $this->set('tourists', $this->paginate());
 }
 
@@ -24,12 +25,20 @@ $this->set('tourists', $this->paginate());
 * @param string $id
 * @return void
 */
+
+
 public function view($id = null) {
 $this->Tourist->id = $id;
+$this->Tourist->recursive = 0;
+$this->Tourist->contain('User','Guide','Badge','Comment');
 if (!$this->Tourist->exists()) {
 throw new NotFoundException(__('Invalid tourist'));
 }
-$this->set('tourist', $this->Tourist->read(null, $id));
+$tourist = $this->Tourist->find('first', array(
+'conditions' => array('Tourist.id' => $id)
+));
+$this->set('tourist', $tourist);
+
 }
 
 /**
@@ -47,6 +56,8 @@ $this->redirect(array('action' => 'index'));
 $this->Session->setFlash(__('The tourist could not be saved. Please, try again.'));
 }
 }
+$users = $this->Tourist->User->find('list');
+$this->set(compact('users'));
 }
 
 /**
@@ -57,6 +68,10 @@ $this->Session->setFlash(__('The tourist could not be saved. Please, try again.'
 * @return void
 */
 public function edit($id = null) {
+
+$this->Tourist->recursive = 0;
+$this->Tourist->contain('User','Guide','Badge');
+
 $this->Tourist->id = $id;
 if (!$this->Tourist->exists()) {
 throw new NotFoundException(__('Invalid tourist'));
@@ -71,6 +86,10 @@ $this->Session->setFlash(__('The tourist could not be saved. Please, try again.'
 } else {
 $this->request->data = $this->Tourist->read(null, $id);
 }
+$badges = $this->Tourist->Badge->find('list');
+
+$users = $this->Tourist->User->find('list');
+$this->set(compact('users','badges'));
 }
 
 /**
@@ -137,6 +156,8 @@ $this->redirect(array('action' => 'index'));
 $this->Session->setFlash(__('The tourist could not be saved. Please, try again.'));
 }
 }
+$users = $this->Tourist->User->find('list');
+$this->set(compact('users'));
 }
 
 /**
@@ -161,6 +182,8 @@ $this->Session->setFlash(__('The tourist could not be saved. Please, try again.'
 } else {
 $this->request->data = $this->Tourist->read(null, $id);
 }
+$users = $this->Tourist->User->find('list');
+$this->set(compact('users'));
 }
 
 /**
