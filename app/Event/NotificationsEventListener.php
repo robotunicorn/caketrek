@@ -4,9 +4,12 @@ class NotificationsEventListener implements CakeEventListener {
 	public function implementedEvents (){
 		return array(
 			'message.add.aftersave' => 'notiMessage',
+			'comment.add.aftersave' => 'notiComment',
 		);
 	}
-	
+	public function notiComment($event){
+		debug($event);
+	}
 	public function notiMessage($event){
 		$tourist = ClassRegistry::init('Tourist');
 		$sender = $tourist->find('all', array('conditions' => array('Tourist.id' => $event->subject()->data['Message']['sender_id'])));
