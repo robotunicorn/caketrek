@@ -1,3 +1,4 @@
+
 <div class="journeys form">
 <?php echo $this->Form->create('Journey'); ?>
 	<fieldset>
@@ -24,3 +25,23 @@
 		
 	</ul>
 </div>
+
+
+<?php
+$fbc = $this->Js->get('#JourneyZoneId')->event('change', 
+	$this->Js->request(array(
+		'controller'=>'Tracks',
+		'action'=>'getByZone'
+		), array(
+		'update'=>'#JourneyTrackId',
+		'async' => true,
+		'method' => 'post',
+		'dataExpression'=>true,
+		'data'=> $this->Js->serializeForm(array(
+			'isForm' => true,
+			'inline' => true
+			))
+		))
+	);
+	
+?>

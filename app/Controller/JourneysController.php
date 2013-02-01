@@ -12,12 +12,16 @@ App::uses('AppController', 'Controller');
 
 class JourneysController extends AppController {
 
+	public $helpers = array('Js');
+	
 	var $uses = array('Journey', 'Track', 'Zones'); 
+	
+	
 
 	var $paginate = array(
         'limit' => 5,
         'order' => array(
-            'Journey.created' => 'asc'
+            'Journey.created' => 'desc'
         )
     );
 /**
@@ -73,6 +77,11 @@ class JourneysController extends AppController {
 		$tracks = $this->Journey->Track->find('list');
 		$zones = $this->Journey->Zone->find('list');
 		$this->set(compact('tracks', 'zones'));
+		$this->Track->find('all');
+		
+		
+		
+		
 		
 	}
 

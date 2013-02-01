@@ -12,8 +12,8 @@ class TracksController extends AppController {
  *
  * @return void
  
- */	
-	var $uses = array('Track','Journey');
+ */	public $helpers = array('Js');
+	var $uses = array('Track','Journey','Zone');
 
  
 	var $paginate = array(
@@ -208,5 +208,19 @@ class TracksController extends AppController {
 		}
 		$this->Session->setFlash(__('Track was not deleted'));
 		$this->redirect(array('action' => 'index'));
+	}
+	
+	
+	public function getByZone() {
+		$zone_id = $this->request->data['Journey']['zone_id'];
+ 
+		$tracks = $this->Track->find('list', array(
+			'conditions' => array('Track.zone_id' => $zone_id),
+			'recursive' => -1
+			));
+ 
+		$this->set('tracks',$tracks);
+		$this->layout = 'ajax';
+		//$this->layout = false;
 	}
 }
