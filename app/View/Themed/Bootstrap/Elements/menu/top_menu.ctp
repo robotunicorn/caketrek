@@ -4,6 +4,8 @@
 <style type="text/css" media="screen">
 	.search-area{
 		position:relative;
+		margin-top:6px;
+		height:30px;
 	}
 	.search-area .results{
 		-moz-box-shadow: 0px 1px 3px 0px #656565;
