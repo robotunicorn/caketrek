@@ -1,11 +1,10 @@
 <div class="tourists view">
 	<div class="page-header">
-		<h1><?php  echo __('Tourist'); ?> <small><?php echo h($tourist['Tourist']['first_name']); ?> <?php echo h($tourist['Tourist']['last_name']); ?></small></h1>
+		<h1><?php  echo __('Tourist'); ?> <small><?php echo h($tourist['Tourist']['first_name']); ?> <?php echo h($tourist['Tourist']['last_name']); ?></small> <?php echo $this->Form->postLink(__('Follow'), array('action' => 'follow', $tourist['Tourist']['id']), array('class'=>'btn btn-primary', 'escape' => false)); ?></h1>
 	</div>
 	<div class="subhead">
 		<div class="subnav">
 			<ul class="nav nav-pills">
-				<li><?php echo $this->Form->postLink(__('Follow'), array('action' => 'follow', $tourist['Tourist']['id'])); ?></li>
 				<li><?php echo $this->Html->link(__('Edit Tourist'), array('action' => 'edit', $tourist['Tourist']['id'])); ?> </li>
 				<li><?php echo $this->Form->postLink(__('Delete Tourist'), array('action' => 'delete', $tourist['Tourist']['id']), null, __('Are you sure you want to delete # %s?', $tourist['Tourist']['id'])); ?> </li>
 				<li><?php echo $this->Html->link(__('List Tourists'), array('action' => 'index')); ?> </li>
@@ -25,9 +24,8 @@
 			<?php echo h($tourist['Tourist']['bio']); ?>
 			&nbsp;
 		</div>
-
 		<p><?php echo __('User'); ?> : 
-			<?php echo $this->Html->link($tourist['User']['username'], array('controller' => 'users', 'action' => 'view', $tourist['User']['id'])); ?>
+			<?php echo $this->Html->link($tourist['User']['username'], array('controller' => 'users', 'action' => 'view', $tourist['User']['id']) ); ?>
 	</div>
 	<div class="span3">
 		Badges :
