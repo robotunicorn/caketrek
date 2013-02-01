@@ -70,8 +70,6 @@ class JourneysController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Journey->save($this->request->data)) {
 				$this->Session->setFlash(__('The journey has been saved'));
-				debug($this->request->data);
-				debug($this->Journey);
 				//$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The journey could not be saved. Please, try again.'));
