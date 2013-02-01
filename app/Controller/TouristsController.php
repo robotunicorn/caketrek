@@ -6,7 +6,7 @@ App::uses('AppController', 'Controller');
  * @property Tourist $Tourist
  */
 class TouristsController extends AppController {
-
+public $theme = "Bootstrap";
 /**
  * index method
  *
