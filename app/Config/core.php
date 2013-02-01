@@ -19,6 +19,9 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
+
+
+
 /**
  * CakePHP Debug Level:
  *
@@ -186,12 +189,12 @@ Configure::write('Routing.prefixes', array('admin'));
 /**
  * A random string used in security hashing methods.
  */
-	Configure::write('Security.salt', 'DYhGHJGZYG66sdhhhJ6gaC9mi');
+	Configure::write('Security.salt', 'DYhGHJGZYG66sddhhJ6gaC9mi');
 
 /**
  * A random numeric string (digits only) used to encrypt/decrypt strings.
  */
-	Configure::write('Security.cipherSeed', '118593096574123452496749683622');
+	Configure::write('Security.cipherSeed', '118593096574123454796749683622');
 
 /**
  * Apply timestamps with the last modified time to static assets (js, css, images).

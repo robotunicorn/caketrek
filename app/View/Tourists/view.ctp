@@ -26,6 +26,21 @@
 			<?php echo h($tourist['Tourist']['media_id']); ?>
 			&nbsp;
 		</dd>
+			<div>
+		Avatar :
+		<?php
+
+		$results = $this->Upload->listing ('Tourist', $tourist['Tourist']['id']);
+		$directory = $results['directory'];
+		$baseUrl = $results['baseUrl'];
+		$files = $results['files'];
+		foreach ($files as $file) {
+		$f = basename($file);
+		$url = $baseUrl . "/$f";
+	echo "<img src=\"" . $url . "\"/><br />\n";
+	}
+	?>
+</div>
 		<dt><?php echo __('User'); ?></dt>
 		<dd>
 			<?php echo $this->Html->link($tourist['User']['username'], array('controller' => 'users', 'action' => 'view', $tourist['User']['id'])); ?>

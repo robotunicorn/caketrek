@@ -7,6 +7,9 @@ App::uses('AppController', 'Controller');
  */
 class TouristsController extends AppController {
 
+var $helpers = array('AjaxMultiUpload.Upload');
+var $components = array('Session', 'AjaxMultiUpload.Upload');
+
 /**
  * index method
  *
