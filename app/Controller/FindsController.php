@@ -8,10 +8,17 @@ App::uses('AppController', 'Controller');
 class FindsController extends AppController{
 	public $theme = "Bootstrap";
 	
+	/**
+	*  Déclaration des tables à utiliser : infos => colonnes où rechercher, displayfields => résultat à montrer, show => montrer un autre type de données
+	**/
 	public $tables = array(
 		'Tourists'=>array(
 			'infos'=>array('bio','first_name','last_name'),
 			'displayfields' =>array('first_name')
+		),
+		'Journeys'=>array(
+			'infos'=>array('name','about','body'),
+			'displayfields' =>array('name','public')
 		),
 		'Users'=>array(
 			'infos'=>array('username','email'),
@@ -19,54 +26,40 @@ class FindsController extends AppController{
 			'show' => array(
 				'name'=>'Tourists',
 				'key'=>'user_id'
-		)),
-		'Journeys'=>array(
-			'infos'=>array('name','about','body'),
-			'displayfields' =>array('name','public')
-		)
+		))
 	);
 	public $uses = array();
 	public $total = 0;
 
-/**
-* 	Fonction index() => Traitement des données envoyées par le formulaire
-**/	
 	public function index(){
-		
+		// Show view/index
 	}
+	
+	/**
+	*  Traitement de la requête Ajax.
+	**/
 	function ajaxProcess(){
 	// Cas des requêtes AJAX
 	        if ( $this->request->is( 'ajax' ) ){
 				foreach($this->tables as $k=>$v):
 					array_push($this->uses,$k);
 				endforeach;
+				
 				$results = array();
-
 				$entry = $this->request->query[ 'entry' ];
 				$entry = strtolower($entry);
-
 				foreach($this->tables as $k=>$v):
 							$results=$this->getResults($k,$entry,$results,$v['infos'],$v['displayfields']);	
 				endforeach;
-
-				//$this->set($d);
-
-	            // On encode au format JSON et on affiche directement ce résultat (pour le récupérer dans la vue)
+				
 	            echo json_encode($results);
-
-	            // Il faut penser à terminer le script brutalement pour court-circuiter les mécanismes
-	            // de CakePHP (méthodes de la classe mère AppController par exemple)
 	            exit();
-	        }
-	        else {
-	            // Code qui servirait dans le cas de requêtes http classiques (par opposition à AJAX)
-	            // Pour nous dans cet exemple, c'est inutile...
 	        }
 	    }
 
-/**
-*  Fonction de comparaison des entrées dans les tables indiquées => getResults()
-**/
+	/**
+	*  Fonction de comparaison des entrées dans les tables indiquées => getResults()
+	**/
 	function getResults($table,$entry,$results,$columns,$displayfields){
 		$conditions = array();
 		foreach($columns as $v){
@@ -83,9 +76,9 @@ class FindsController extends AppController{
 				
 				$show_name = $this->tables[$table]['show']['name'];
 				$show_key  = $this->tables[$table]['show']['key'];
-				$displayfields = $this->tables[$show_name]['displayfields'];
 				
-				foreach($data as $search_results): //On traites les données de la recherche dans un foreach
+				
+				foreach($data as $search_results): //On traite les données de la recherche dans un foreach
 					$itexists = false;
 					$search_results = current($search_results);
 					$id = $search_results['id'];
@@ -97,6 +90,7 @@ class FindsController extends AppController{
 					if(!empty($show_data)){ //S'il y'a correspondance entre les deux types (par exemple si Users est lié à Tourists)
 						
 					$show_data = current(current($show_data));
+					$displayfields = $this->tables[$show_name]['displayfields'];
 						if(!isset($results[$show_name])){ 
 							$results[$show_name] = array();
 						}
@@ -107,8 +101,21 @@ class FindsController extends AppController{
 						}	
 						if(!$itexists){
 							$show_data['displayfields']=$displayfields;
-							$show_data['normal']='lol';
 							array_push($results[$show_name],$show_data); // On ajoute les valeurs à notre array results		
+						}
+					}
+					else{
+						if(!isset($results[$table])){
+							$results[$table]=array();
+						}
+						foreach($results[$table] as $valeur){
+							if($valeur['id']==$search_results['id']){
+								$itexists = true;
+							}
+						}
+						if(!$itexists){
+							$search_results['displayfields']=$this->tables[$table]['displayfields'];
+							array_push($results[$table],$search_results);// On ajoute les valeurs à notre array results
 						}
 					}
 				endforeach;						
@@ -128,7 +135,6 @@ class FindsController extends AppController{
 						}
 						if(!$itexists){
 							$search_results['displayfields']=$displayfields;
-							$search_results['normal']='normal';
 							array_push($results[$table],$search_results);// On ajoute les valeurs à notre array results
 						}
 				endforeach;
