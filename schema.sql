@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 -- phpMyAdmin SQL Dump
 -- version 3.5.1
 -- http://www.phpmyadmin.net
@@ -858,14 +857,10 @@ CREATE TABLE `comments` (
   `comment` text,
   `note` int(11) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
+  `tourist_id` int(11) DEFAULT NULL,
   `object_id` int(11) DEFAULT NULL,
   `object_type` char(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 
-
-
-
->>>>>>> Modif friends
