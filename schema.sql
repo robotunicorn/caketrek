@@ -130,12 +130,14 @@ UNLOCK TABLES;
 # ------------------------------------------------------------
 
 CREATE TABLE `friends` (
-  `ami_from` int(11) NOT NULL,
-  `ami_to` int(11) NOT NULL,
-  `ami_confirm` int(11) NOT NULL,
-  `ami_date` datetime NOT NULL,
-  PRIMARY KEY (`ami_to`,`ami_from`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `follower_id` int(11) unsigned NOT NULL,
+  `following_id` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_following_follower` (`follower_id`,`following_id`),
+  KEY `follower` (`follower_id`),
+  KEY `following` (`following_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
