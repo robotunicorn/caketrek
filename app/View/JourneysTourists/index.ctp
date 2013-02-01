@@ -29,13 +29,10 @@
 			if( $status[$journeysTourist['JourneysTourist']['status']] == 'invited' ){
 				echo $this->Form->postLink(__('Apply'), array('action' => 'apply', $journeysTourist['JourneysTourist']['id']));
 				// On efface l'entrée si le tourist refuse
-				echo $this->Form->postLink(__('Deny'), array('action' => 'delete', $journeysTourist['JourneysTourist']['id']), null, __('Are you sure you want to refuse the journey?', $journeysTourist['JourneysTourist']['id']));
+				echo $this->Form->postLink(__('Deny'), array('action' => 'delete', $journeysTourist['JourneysTourist']['id']), null, __('Are you sure you want to decline the journey?', $journeysTourist['JourneysTourist']['id']));
 			}
 			if( $status[$journeysTourist['JourneysTourist']['status']] == 'applied' ){
-				echo $this->Form->postLink(__('Reject'), array('action' => 'deny', $journeysTourist['JourneysTourist']['id']), null, __('Are you sure you want to leave the journey?', $journeysTourist['JourneysTourist']['id']));
-			}
-			if( $status[$journeysTourist['JourneysTourist']['status']] == 'rejected' ){
-				echo $this->Form->postLink(__('Apply'), array('action' => 'apply', $journeysTourist['JourneysTourist']['id']));
+				echo $this->Form->postLink(__('Reject'), array('action' => 'delete', $journeysTourist['JourneysTourist']['id']), null, __('Are you sure you want to leave the journey?', $journeysTourist['JourneysTourist']['id']));
 			}
 			?>
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $journeysTourist['JourneysTourist']['id'])); ?>
