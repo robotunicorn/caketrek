@@ -52,6 +52,9 @@ class JourneysController extends AppController {
 		if (!$this->Journey->exists()) {
 			throw new NotFoundException(__('Invalid journey'));
 		}
+		$journey = $this->Journey->find('first', array(
+			'conditions' => array('Journey.id' => $id)
+		));
 		$this->set('journey', $this->Journey->read(null, $id));
 	}
 

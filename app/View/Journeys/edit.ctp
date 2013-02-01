@@ -11,6 +11,7 @@
 		echo $this->Form->input('body');
 		echo $this->Form->input('public', array('type' => 'checkbox'));
 		echo $this->Form->input('crew');
+		echo $this->Upload->edit('Journey', $this->Form->fields['Journey.id']);
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

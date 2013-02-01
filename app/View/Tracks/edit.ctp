@@ -8,6 +8,7 @@
 		echo $this->Form->input('description');
 		echo $this->Form->input('duration');
 		echo $this->Form->input('zone_id');
+		echo $this->Upload->edit('Track', $this->Form->fields['Track.id']);
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

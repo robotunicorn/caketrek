@@ -91,9 +91,7 @@ class TouristsController extends AppController {
 
 		$users = $this->Tourist->User->find('list');
 		$this->set(compact('users','badges'));
-		
-		$helpers = array('AjaxMultiUpload.Upload');
-		$components = array('Session', 'AjaxMultiUpload.Upload');
+
 	}
 
 /**

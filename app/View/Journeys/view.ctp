@@ -62,8 +62,25 @@
 			<?php echo h($journey['Journey']['modified']); ?>
 			&nbsp;
 		</dd>
-	</dl>
+	</dl><div>
+		Images :
+	<?php
+		
+		$results = $this->Upload->listing ('Journey', $journey['Journey']['id']);
+
+		$directory = $results['directory'];
+		$baseUrl = $results['baseUrl'];
+		$files = $results['files'];
+
+		foreach ($files as $file) {
+			$f = basename($file);
+			$url = $baseUrl . "/$f";
+			echo "<img src=\"" . $url . "\"/><br />\n";
+		}
+	?>
 </div>
+</div>
+
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>

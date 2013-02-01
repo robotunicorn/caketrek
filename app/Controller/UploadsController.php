@@ -16,7 +16,7 @@ class UploadsController extends AjaxMultiUploadAppController {
 	public $uses = null;
 
 	// list of valid extensions, ex. array("jpeg", "xml", "bmp")
-	var $allowedExtensions = array();
+	var $allowedExtensions = array("jpeg", "png", "jpg");
 
 	function upload($dir=null) {
        	require_once (ROOT . DS . APP_DIR . "/Plugin/AjaxMultiUpload/Config/bootstrap.php");

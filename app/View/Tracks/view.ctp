@@ -27,6 +27,23 @@
 			&nbsp;
 		</dd>
 	</dl>
+	<div>
+		Images :
+	<?php
+		
+		$results = $this->Upload->listing ('Track', $track['Track']['id']);
+
+		$directory = $results['directory'];
+		$baseUrl = $results['baseUrl'];
+		$files = $results['files'];
+
+		foreach ($files as $file) {
+			$f = basename($file);
+			$url = $baseUrl . "/$f";
+			echo "<img src=\"" . $url . "\"/><br />\n";
+		}
+	?>
+	</div>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
