@@ -6,7 +6,7 @@
 		echo $this->Form->input('id');
 		echo $this->Form->input('journey_id');
 		echo $this->Form->input('tourist_id');
-		echo $this->Form->input('status');
+		echo $this->Form->input('status',array('options' => $status));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

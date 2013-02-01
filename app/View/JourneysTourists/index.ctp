@@ -6,7 +6,7 @@
 			<th><?php echo $this->Paginator->sort('journey_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('tourist_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('status'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
+			<th><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php
 	foreach ($journeysTourists as $journeysTourist): ?>
@@ -18,17 +18,22 @@
 		<td>
 			<?php echo $this->Html->link($journeysTourist['Tourist']['first_name'], array('controller' => 'tourists', 'action' => 'view', $journeysTourist['Tourist']['id'])); ?>
 		</td>
-		<td><?php echo h($journeysTourist['JourneysTourist']['status']); ?>&nbsp;</td>
-		<td class="actions">
-		<?php	echo $this->Form->postLink(__('Deny'), array('action' => 'delete', $journeysTourist['JourneysTourist']['id']), null, __('Are you sure you want to refuse the journey?', $journeysTourist['JourneysTourist']['id']));
-			echo $this->Form->postLink(__('Deny'), array('action' => 'delete', $journeysTourist['JourneysTourist']['id']), null, __('Are you sure you want to decline the journey?', $journeysTourist['JourneysTourist']['id']));
+		<td><?php 
+			echo $status[$journeysTourist['JourneysTourist']['status']];
+			?>&nbsp;</td>
+		<td>
+			<?php 
+			if( $status[$journeysTourist['JourneysTourist']['status']] == 'accepted' ){
+				echo $this->Form->postLink(__('Reject'), array('action' => 'reject', $journeysTourist['JourneysTourist']['id']));
+			}
+			if( $status[$journeysTourist['JourneysTourist']['status']] == 'invited' ){
+				echo $this->Form->postLink(__('Apply'), array('action' => 'apply', $journeysTourist['JourneysTourist']['id']));
+				// On efface l'entrée si le tourist refuse
+				echo $this->Form->postLink(__('Deny'), array('action' => 'delete', $journeysTourist['JourneysTourist']['id']), null, __('Are you sure you want to decline the journey?', $journeysTourist['JourneysTourist']['id']));
 			}
 			if( $status[$journeysTourist['JourneysTourist']['status']] == 'applied' ){
-			echo $this->Form->postLink(__('Reject'), array('action' => 'deny', $journeysTourist['JourneysTourist']['id']), null, __('Are you sure you want to leave the journey?', $journeysTourist['JourneysTourist']['id']));
+				echo $this->Form->postLink(__('Reject'), array('action' => 'delete', $journeysTourist['JourneysTourist']['id']), null, __('Are you sure you want to leave the journey?', $journeysTourist['JourneysTourist']['id']));
 			}
-			if( $status[$journeysTourist['JourneysTourist']['status']] == 'rejected' ){
-			echo $this->Form->postLink(__('Apply'), array('action' => 'apply', $journeysTourist['JourneysTourist']['id']));
-			echo $this->Form->postLink(__('Reject'), array('action' => 'delete', $journeysTourist['JourneysTourist']['id']), null, __('Are you sure you want to leave the journey?', $journeysTourist['JourneysTourist']['id']));
 			?>
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $journeysTourist['JourneysTourist']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $journeysTourist['JourneysTourist']['id'])); ?>
