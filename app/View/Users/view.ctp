@@ -41,6 +41,27 @@
 	<hr>
 	<div class="row">
 		<div class="span12">
+			
+			<?php  if (!empty($user['Notification'])): ?>
+			<h2>Notification</h2>
+			
+			<table cellpadding = "0" cellspacing = "0" class="table">
+				<tr>
+					<th><?php echo __('id'); ?></th>
+					<th><?php echo __('type'); ?></th>
+					<th><?php echo __('link'); ?></th>
+				</tr>
+				<?php foreach ($user['Notification'] as $noti): ?>
+					<tr>
+						<td><?php echo $noti['id']; ?></td>
+						<td><?php echo $noti['type']; ?></td>
+						<td><a href="<?php echo $noti['link']; ?>"> Voir </a></td>
+					</tr>
+				<?php endforeach; ?>
+			<?php endif; ?>
+			</table>
+		</div>
+		<div class="span12">
 			<div class="related">
 				<h3><?php echo __('Related Badges'); ?></h3>
 				<?php if (!empty($user['Badge'])): ?>

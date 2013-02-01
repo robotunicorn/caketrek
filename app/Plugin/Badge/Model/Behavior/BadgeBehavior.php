@@ -7,7 +7,7 @@
 */
 class BadgeBehavior extends ModelBehavior{
 	
-	function setup($model,$options= array()){
+	function setup(Model $model,$options= array()){
 		/**
 		 * HBTM associations
 		 *
@@ -24,14 +24,14 @@ class BadgeBehavior extends ModelBehavior{
 				'order' => ''
 			);
 	}
-	public function afterSave($model){
+	public function afterSave(Model $model, $created){
 
 		$model->clearBadges();
 		$model->addBadges();
 		
 	}
 	
-	public function afterFind($model, $data){
+	public function afterFind(Model $model, $data, $primary){
 		$data[0][$model->name]['badge_plugin'] = "afterFind is active";
 		foreach ($data as $key => $value) {
 			if(!empty($value['Badge']))

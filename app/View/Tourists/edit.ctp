@@ -12,7 +12,6 @@
 		echo $this->Form->input('badges',
 			array('label'=>'Badges','type'=>'select','multiple'=>'checkbox')
 		);
-		
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
