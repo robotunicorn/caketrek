@@ -416,6 +416,28 @@ CREATE TABLE `comments` (
 ) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 
+-- --------------------------------------------------------
 
+--
+-- Structure de la table `journeys_tourists`
+--
+
+CREATE TABLE IF NOT EXISTS `journeys_tourists` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `journey_id` int(11) DEFAULT NULL,
+  `tourist_id` int(11) DEFAULT NULL,
+  `status` tinyint(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Contenu de la table `journeys_tourists`
+--
+
+INSERT INTO `journeys_tourists` (`id`, `journey_id`, `tourist_id`, `status`) VALUES
+(3, 1, 1, NULL),
+(4, 2, 7, NULL),
+(5, 3, 2, NULL),
+(7, 1, 7, NULL);
 
 
