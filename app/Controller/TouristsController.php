@@ -29,7 +29,7 @@ public $theme = "Bootstrap";
 		$this->Tourist->id = $id;
 
 		$this->Tourist->recursive = 0;
-		$this->Tourist->contain('User','Guide','Badge');
+		$this->Tourist->contain('User','Guide','Badge', 'Comment');
 		if (!$this->Tourist->exists()) {
 			throw new NotFoundException(__('Invalid tourist'));
 		}
