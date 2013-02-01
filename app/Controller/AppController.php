@@ -69,4 +69,5 @@ class AppController extends Controller {
 		// Default deny
 		return true;
 	  }
+	  public $helpers = array ('Comment.Comment');
 }
