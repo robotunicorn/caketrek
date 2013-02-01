@@ -64,5 +64,6 @@ class Tourist extends AppModel {
 			'order' => ''
 		)
 	);
+
 	
 }

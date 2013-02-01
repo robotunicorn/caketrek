@@ -38,6 +38,8 @@ class MessagesController extends AppController {
  * @return void
  */
 	public function add() {
+		App::uses('NotificationsEventListener','Event');
+		$this->Message->getEventManager()->attach(new NotificationsEventListener());
 		if ($this->request->is('post')) {
 			$this->Message->create();
 			if ($this->Message->save($this->request->data)) {

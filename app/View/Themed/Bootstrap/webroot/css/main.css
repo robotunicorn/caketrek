@@ -1,0 +1,24 @@
+/* ----------------------------------------------- */
+/* 		        VIEW NOTIFICATIONS
+/* ----------------------------------------------- */
+
+.non-vu {
+	background-color:#eeeee;
+}
+.nav-list > .active > a:hover {
+	background-color:#d0d0d0;
+}
+.badgeNav {
+	display: block;
+	float: right;
+	position: relative;
+	top: -20px;
+}
+
+.nav-list li {
+	border-bottom: 1px solid #b9b9b9;
+}
+
+.nav-list .nav-header{
+	border-bottom: none;
+}
