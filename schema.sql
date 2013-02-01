@@ -400,3 +400,22 @@ CREATE TABLE `notifications` (
   `viewed` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+DROP TABLE IF EXISTS `comments`;
+
+CREATE TABLE `comments` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `comment` text,
+  `note` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `object_id` int(11) DEFAULT NULL,
+  `object_type` char(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+
+
+
+
+
