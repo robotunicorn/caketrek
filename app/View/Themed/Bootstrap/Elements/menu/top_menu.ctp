@@ -106,7 +106,7 @@ $(document).ready(function(){
 		var searchtext = $(this).val();
 
 		if(searchtext != '' && searchtext != ' '){
-		$.get("finds/ajaxProcess?entry="+searchtext,function(data) {
+		$.get("/caketrek/finds/ajaxProcess?entry="+searchtext,function(data) {
 		if(data == '[]'){
 			$('.results').append('<li class="search-error">La recherche ne correspond à aucun résultat...</li>');
 		}
@@ -122,10 +122,10 @@ $(document).ready(function(){
  				$.each(value, function(k,v){
 					var displayfield = v.displayfields[0];
 					if (v.displayfields[1] == 'public' && v[v.displayfields[1]]==false) {
-						$('.results').append('<li><a class="private" href="'+key.toLowerCase()+'/view/'+v.id+'" target="_blank">Privé</a><span style="background-color:#dc0f18" class="result-type label label-inverse">'+key+'</span></li>');
+						$('.results').append('<li><a class="private" href="/caketrek/'+key.toLowerCase()+'/view/'+v.id+'" target="_blank">Privé</a><span style="background-color:#dc0f18" class="result-type label label-inverse">'+key+'</span></li>');
 					}	
 					else{
-						$('.results').append('<li><a style="color:#000" href="'+key.toLowerCase()+'/view/'+v.id+'" target="_blank"><span class="displayfield">'+v[displayfield]+'</span></a><span style="background-color:#'+color+'" class="result-type label label-inverse">'+key+'</span></li>');
+						$('.results').append('<li><a style="color:#000" href="/caketrek/'+key.toLowerCase()+'/view/'+v.id+'" target="_blank"><span class="displayfield">'+v[displayfield]+'</span></a><span style="background-color:#'+color+'" class="result-type label label-inverse">'+key+'</span></li>');
 					}
 				});
 				i++;
