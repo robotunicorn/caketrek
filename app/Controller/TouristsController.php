@@ -127,10 +127,10 @@ public $theme = "Bootstrap";
 		if ($this->request->is('post')) {
 			$this->Tourist->create();
 			if ($this->Tourist->save($this->request->data)) {
-				$this->Session->setFlash(__('The tourist has been saved'));
+				$this->Session->setFlash(__('The tourist has been saved'),'success');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The tourist could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The tourist could not be saved. Please, try again.'), 'error');
 			}
 		}
 		$users = $this->Tourist->User->find('list');

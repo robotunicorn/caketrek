@@ -62,6 +62,12 @@ class Tourist extends AppModel {
 		)
 	);
 
+
+	public function afterSave ($created){
+		if($created){
+			$this->getEventManager()->dispatch(new CakeEvent('message.add.aftersave', $this));
+		}
+	}
 /**
  * hasAndBelongsToMany associations
  *
