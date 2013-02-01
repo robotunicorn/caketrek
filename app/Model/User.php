@@ -122,6 +122,17 @@ class User extends AppModel {
 			'order' => ''
 		)
 	);
+
+
+	public $hasMany = array(
+		'Notification' => array(
+			'className' => 'Notification',
+			'foreignKey' => 'tourist_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
 	
 	public function beforeSave($options = array()) {
 		if (isset($this->data[$this->alias]['password'])) {
@@ -129,4 +140,6 @@ class User extends AppModel {
 		}
 		return true;
 	}
+
+
 }
