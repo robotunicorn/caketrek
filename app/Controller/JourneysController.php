@@ -88,6 +88,7 @@ class JourneysController extends AppController {
  */
 	public function edit($id = null) {
 		$this->Journey->id = $id;
+		
 		if (!$this->Journey->exists()) {
 			throw new NotFoundException(__('Invalid journey'));
 		}
@@ -101,12 +102,8 @@ class JourneysController extends AppController {
 		} else {
 			$this->request->data = $this->Journey->read(null, $id);
 		}
-		$tracks = $this->Journey->Track->find('list');
-		$zones = $this->Journey->Zone->find('list');
-		$this->set(compact('tracks', 'zones'));
 	}
 
-	
 	
 	
 /**

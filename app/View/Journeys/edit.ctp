@@ -3,14 +3,21 @@
 	<fieldset>
 		<legend><?php echo __('Edit Journey'); ?></legend>
 	<?php
+		debug($this->Form->fields);
+		
 		echo $this->Form->input('name');
+		debug($this->Form->fields);
 		echo $this->Form->input('tourist_id');
+		debug($this->Form->fields);
 		echo $this->Form->input('guide_id');
-		echo $this->Form->input('zone_id');	
+		debug($this->Form->fields);
+		echo $this->Form->input('zone_id');
+debug($this->Form->fields);		
 		echo $this->Form->input('about');
 		echo $this->Form->input('body');
 		echo $this->Form->input('public', array('type' => 'checkbox'));
 		echo $this->Form->input('crew');
+		
 		echo $this->Upload->edit('Journey', $this->Form->fields['Journey.id']);
 	?>
 	</fieldset>
