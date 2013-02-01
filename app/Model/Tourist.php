@@ -29,7 +29,7 @@ class Tourist extends AppModel {
 		TODO try public $displayField = 'full_name';
 	*/
 
-	public $actsAs = array('Containable','Badge.Badge');
+	public $actsAs = array('Containable','Badge.Badge', 'Comment.Comment');
 	
 
 /**
@@ -63,11 +63,6 @@ class Tourist extends AppModel {
 	);
 
 
-	public function afterSave ($created){
-		if($created){
-			$this->getEventManager()->dispatch(new CakeEvent('message.add.aftersave', $this));
-		}
-	}
 /**
  * hasAndBelongsToMany associations
  *

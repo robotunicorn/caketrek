@@ -24,6 +24,8 @@
 			<?php echo h($tourist['Tourist']['bio']); ?>
 			&nbsp;
 		</div>
+		<?php echo $this->Comment->view($tourist); ?>
+		<?php echo $this->Comment->add($tourist,$tourist['Tourist']); ?>
 
 
 		<p><?php echo __('User'); ?> : 

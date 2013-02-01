@@ -16,9 +16,9 @@ class CommentHelper extends AppHelper {
 			$comment = $model['Comment'][$i];
 
 			echo '<div style="border-bottom:solid 1px #CCC;">';
-			if ($comment['user_id']) {
+			if ($comment['tourist_id']) {
 				echo '<h4>';
-				echo 'Auteur : '.$comment['user_id'];
+				echo 'Auteur : '.$comment['tourist_id'];
 				echo '</h4>';
 			}
 			echo "<p>Commentaire : ".$comment['comment']."</p>";
