@@ -8,7 +8,7 @@ App::uses('AppController', 'Controller');
 class CommentsController extends AppController {
 
 	public function index() {
-
+			
 	}
 	/**
  * add method
@@ -18,7 +18,6 @@ class CommentsController extends AppController {
 
 
 	public function add() {
-		//$this->Comment->Comment->addComment($model,$infos);
 
 		if ($this->request->is('post')) {
 			$this->Comment->create();
@@ -34,6 +33,7 @@ class CommentsController extends AppController {
 
 	public function delete($id){
 		$this->Comment->delete($id);
+		$this->Session->setFlash(__('The comment has been deleted'));
 		return $this->redirect($this->referer());
 	}
 

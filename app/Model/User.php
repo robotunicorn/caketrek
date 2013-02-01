@@ -122,4 +122,16 @@ class User extends AppModel {
 		)
 	);
 
+	public $hasMany = array(
+		'Comment' => array(
+			'className' => 'Comment.Comment',
+			'foreignKey' => 'user_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
+
+
+
 }

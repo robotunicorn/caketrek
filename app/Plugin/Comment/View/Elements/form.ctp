@@ -12,7 +12,8 @@
 				$object_id=$infos['id'];
 				$object_type=$models[0];
 				echo $this->Form->input('comment');
-				echo $this->Form->input('note');
+				echo $this->Form->input('note', array('options' => array(1, 2, 3, 4, 5),
+    'empty' => '(choisissez)'));
 				echo $this->Form->input('object_id',array('value' => $object_id,'type'=>'hidden'));
 				echo $this->Form->input('object_type',array('value' => $object_type,'type'=>'hidden'));
 			?>

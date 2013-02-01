@@ -12,5 +12,8 @@ class CommentBehavior extends ModelBehavior{
 	            'conditions'    => array('Comment.object_type' => $model->name,'Comment.object_id' => $model->id),
        		)
 		);
+
+		
 	}
+
 }

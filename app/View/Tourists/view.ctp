@@ -1,3 +1,4 @@
+
 <div class="tourists view">
 <h2><?php  echo __('Tourist'); ?></h2>
 	<dl>
