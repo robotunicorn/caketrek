@@ -68,6 +68,7 @@
 	}
 </style>
 <script type="text/javascript" charset="utf-8">
+
 $(document).ready(function(){
 	var colors = ['4395e1','5db841','b464b9','f8835f'];
 	function randOrd(){
