@@ -373,3 +373,19 @@ CREATE TABLE `zones` (
 INSERT INTO `zones` (`id`, `name`, `description`) VALUES
 (1, 'Tibet oriental', 'Quare talis improborum consensio non modo excusatione amicitiae tegenda non est sed potius'),
 (2, ' Sahara algérien', 'supplicio omni vindicanda est, ut ne quis concessum putet amicum vel bellum patriae inferentem sequi; quod quidem, ut res ire coepit, haud scio a');
+
+
+# notifications by valou
+
+DROP TABLE IF EXISTS `notifications`;
+
+
+CREATE TABLE `notifications` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `type` char(160) DEFAULT NULL,
+  `tourist_id` int(11) DEFAULT NULL,
+  `link` varchar(200) DEFAULT NULL,
+  `created` timestamp NULL DEFAULT NULL,
+  `viewed` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
