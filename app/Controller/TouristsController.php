@@ -6,7 +6,7 @@ App::uses('AppController', 'Controller');
  * @property Tourist $Tourist
  */
 class TouristsController extends AppController {
-
+public $theme = "Bootstrap";
 /**
  * index method
  *
@@ -39,6 +39,84 @@ class TouristsController extends AppController {
 		$this->set('tourist', $tourist);
 		
 	}
+/**
+ * Follow method
+ *
+ * @throws NotFoundException
+ * @param string $to_follow_id
+ * @return void
+ */
+	public function follow($to_follow_id) {
+		$data['Friends']['follower_id'] = $this->Auth->user('Tourist.id'); // Ici on prend l'id du user connecté dans la session du component Auth
+		$data['Friends']['following_id'] = $to_follow_id;
+
+		/**
+		*
+		* Containable doesn't work in this case
+		* $this->Tourist->contain('Following');
+		* $this->Auth->user('Tourist.id') => Contient le tourist ID
+		**/
+
+		$this->Tourist->bindModel(array('hasOne'=>array('Friends')),false);
+		$validate = $this->Tourist->Friend->find('all', array('conditions' => array('following_id' => $to_follow_id , 'follower_id' => $this->Auth->user('Tourist.id'))));
+
+		if(empty($validate))
+		{
+			$this->Tourist->Friends->create();
+			$this->Tourist->Friends->save($data);
+			$this->Session->setFlash(__('Tourist Followed'),'success');
+			$this->redirect(array('action' => 'index'));
+		}
+		else {
+		  	$this->Session->setFlash(__('You already follow that tourist'),'error');
+			$this->redirect(array('action' => 'index'));
+		}
+	}
+
+	public function followlist() {
+		$tourists = $this->Tourist->find('first', array(
+			'conditions' => array('Tourist.id'=>$this->Auth->user('Tourist.id')),
+		    'contain'=>array(
+		    		'Following',
+		            'Friend' => array(
+		                
+		            )
+		        )
+		    )
+		);
+		$this->set('followings',$tourists);
+	}
+
+	public function followerlist() {
+		$tourists = $this->Tourist->find('first', array(
+			'conditions' => array('Tourist.id'=>$this->Auth->user('Tourist.id')),
+		    'contain'=>array(
+		    		'Follower',
+		            'Friend' => array(
+		                
+		            )
+		        )
+		    )
+		);
+		$this->set('followers',$tourists);
+	}
+
+	public function unfriend($id = null) {
+		if (!$this->request->is('post')) {
+			throw new MethodNotAllowedException();
+		}
+		$this->Tourist->Friend->id = $id;
+		if (!$this->Tourist->Friend->exists()) {
+
+		}
+		if ($this->Tourist->Friend->delete()) {
+			$this->Session->setFlash(__('No longer friends'),'success');
+			$this->redirect(Controller::referer());
+		}
+		$this->Session->setFlash(__('Frienship was not deleted'));
+		$this->redirect(Controller::referer());
+	}
+
 
 /**
  * add method
@@ -116,6 +194,8 @@ class TouristsController extends AppController {
 		$this->Session->setFlash(__('Tourist was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+
+
 
 /**
  * admin_index method

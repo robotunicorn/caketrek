@@ -23,8 +23,15 @@
 							<?php echo $this->Html->link('Settings', array('controller'=>'users','action' => 'settings' )); ?>
 						</li>
 						<li>
+							<?php echo $this->Html->link(__('List Followers'), array('controller'=>'tourists', 'action' => 'followerlist')); ?> 
+						</li>
+						<li>
+							<?php echo $this->Html->link(__('People I follow'), array('controller'=>'tourists','action' => 'followlist')); ?> 
+						</li>
+						<li>
 							<?php echo $this->Html->link('Logout', array('controller'=>'users','action' => 'logout' )); ?>
 						</li>
+
 					</ul>
 				</li>
 				<?php else: ?>
