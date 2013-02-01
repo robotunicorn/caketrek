@@ -90,7 +90,7 @@ $(document).ready(function(){
 		
 		$('.results').html('');
 		$('.results').stop().animate({
-	    opacity: 0.9}, 500);
+	    opacity: 1}, 500);
 	
 		/**
 		*  Traitement entrée
