@@ -145,6 +145,7 @@ Cache::config('default', array('engine' => 'File'));
 
 
 CakePlugin::load('Badge');
+CakePlugin::load('Comment');
 //CakePlugin::load('Media');
 
 /**
