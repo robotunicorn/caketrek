@@ -3,8 +3,6 @@
 	<fieldset>
 		<legend><?php echo __('Add Journey'); ?></legend>
 	<?php
-		echo $this->Form->input('tourist_id');
-		echo $this->Form->hidden('guide_id', array('empty'=>true));
 		echo $this->Form->input('track_id');
 		echo $this->Form->input('zone_id');
 		echo $this->Form->input('name');

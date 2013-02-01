@@ -5,7 +5,7 @@
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('tourist_id');
-		echo $this->Form->input('guide_id');
+		echo $this->Form->input('guide_id', array('empty' => 'Pas de guide'));
 		echo $this->Form->input('track_id');
 		echo $this->Form->input('zone_id');
 		echo $this->Form->input('name');

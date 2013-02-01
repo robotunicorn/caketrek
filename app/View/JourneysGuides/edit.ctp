@@ -7,7 +7,6 @@
 		echo $this->Form->input('journey_id');
 		echo $this->Form->input('guide_id');
 		echo $this->Form->input('budget');
-		echo $this->Form->input('status');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

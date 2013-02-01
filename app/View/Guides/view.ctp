@@ -74,22 +74,22 @@
 		$i = 0;
 		foreach ($guide['Journey'] as $blabla): ?>
 		<tr>
-			<td><?php echo $journey['id']; ?></td>
-			<td><?php echo $journey['tourist_id']; ?></td>
-			<td><?php echo $journey['guide_id']; ?></td>
-			<td><?php echo $journey['track_id']; ?></td>
-			<td><?php echo $journey['zone_id']; ?></td>
-			<td><?php echo $journey['name']; ?></td>
-			<td><?php echo $journey['about']; ?></td>
-			<td><?php echo $journey['body']; ?></td>
-			<td><?php echo $journey['public']; ?></td>
-			<td><?php echo $journey['crew']; ?></td>
-			<td><?php echo $journey['created']; ?></td>
-			<td><?php echo $journey['modified']; ?></td>
+			<td><?php echo $blabla['id']; ?></td>
+			<td><?php echo $blabla['tourist_id']; ?></td>
+			<td><?php echo $blabla['guide_id']; ?></td>
+			<td><?php echo $blabla['track_id']; ?></td>
+			<td><?php echo $blabla['zone_id']; ?></td>
+			<td><?php echo $blabla['name']; ?></td>
+			<td><?php echo $blabla['about']; ?></td>
+			<td><?php echo $blabla['body']; ?></td>
+			<td><?php echo $blabla['public']; ?></td>
+			<td><?php echo $blabla['crew']; ?></td>
+			<td><?php echo $blabla['created']; ?></td>
+			<td><?php echo $blabla['modified']; ?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'journeys', 'action' => 'view', $journey['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'journeys', 'action' => 'edit', $journey['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'journeys', 'action' => 'delete', $journey['id']), null, __('Are you sure you want to delete # %s?', $journey['id'])); ?>
+				<?php echo $this->Html->link(__('View'), array('controller' => 'journeys', 'action' => 'view', $blabla['id'])); ?>
+				<?php echo $this->Html->link(__('Edit'), array('controller' => 'journeys', 'action' => 'edit', $blabla['id'])); ?>
+				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'journeys', 'action' => 'delete', $blabla['id']), null, __('Are you sure you want to delete # %s?', $blabla['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>

@@ -39,7 +39,9 @@ class JourneysController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+			$touristid=8;
 			$this->Journey->create();
+			$this->request->data['Journey']['tourist_id'] = $touristid;
 			if ($this->Journey->save($this->request->data)) {
 				$this->Session->setFlash(__('The journey has been saved'));
 				$this->redirect(array('action' => 'index'));
@@ -47,12 +49,10 @@ class JourneysController extends AppController {
 				$this->Session->setFlash(__('The journey could not be saved. Please, try again.'));
 			}
 		}
-		$tourists = $this->Journey->Tourist->find('list');
-		$guides = $this->Journey->Guide->find('list');
 		$tracks = $this->Journey->Track->find('list');
 		$zones = $this->Journey->Zone->find('list');
 		$guides = $this->Journey->Guide->find('list');
-		$this->set(compact('tourists', 'guides', 'tracks', 'zones', 'guides'));
+		$this->set(compact('tourists', 'tracks', 'zones', 'guides'));
 	}
 
 /**

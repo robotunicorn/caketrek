@@ -96,7 +96,7 @@
 	</tr>
 	<?php
 		$i = 0;
-		foreach ($journey['Guide'] as $g): ?>
+		foreach ($journey['Guide'] as $guide): ?>
 		<tr>
 			<td><?php echo $journey['Guide']['id']; ?></td>
 			<td><?php echo $journey['Guide']['slogan']; ?></td>
