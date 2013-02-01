@@ -62,7 +62,6 @@ class Tourist extends AppModel {
 		)
 	);
 
-=======
 /**
  * hasAndBelongsToMany associations
  *
