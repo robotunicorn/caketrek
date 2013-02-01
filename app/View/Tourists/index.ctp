@@ -15,7 +15,7 @@
 	foreach ($tourists as $tourist): ?>
 	<tr>
 		<td><?php echo h($tourist['Tourist']['id']); ?>&nbsp;</td>
-		<td><?php echo h($tourist['Tourist']['full_name']); ?>&nbsp;</td>
+		<td><?php echo h($tourist['Tourist']['last_name']); ?>&nbsp;</td>
 		<td><?php echo h($tourist['Tourist']['bio']); ?>&nbsp;</td>
 		<td><?php echo h($tourist['Tourist']['media_id']); ?>&nbsp;</td>
 		<td>

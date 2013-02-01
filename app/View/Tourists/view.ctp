@@ -43,6 +43,23 @@
 		</dd>
 	</dl>
 	<div>
+		Avatar :
+	<?php
+		
+		$results = $this->Upload->listing ('Tourist', $tourist['Tourist']['id']);
+
+		$directory = $results['directory'];
+		$baseUrl = $results['baseUrl'];
+		$files = $results['files'];
+
+		foreach ($files as $file) {
+			$f = basename($file);
+			$url = $baseUrl . "/$f";
+			echo "<img src=\"" . $url . "\"/><br />\n";
+		}
+	?>
+	</div>
+	<div>
 		Badges :
 	<?php
 	for ($i=0; $i < count($tourist['Badge']); $i++) { 
