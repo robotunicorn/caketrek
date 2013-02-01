@@ -23,6 +23,9 @@
 							<?php echo $this->Html->link('Settings', array('controller'=>'users','action' => 'settings' )); ?>
 						</li>
 						<li>
+							<?php echo $this->Html->link('Notifications', array('controller'=>'Notifications','action' => 'index' )); ?>
+						</li>
+						<li>
 							<?php echo $this->Html->link(__('List Followers'), array('controller'=>'tourists', 'action' => 'followerlist')); ?> 
 						</li>
 						<li>

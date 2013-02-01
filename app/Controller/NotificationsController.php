@@ -8,14 +8,16 @@ App::uses('AppController', 'Controller');
 class NotificationsController extends AppController {
 
 public $theme = "Bootstrap";
+
+
 /**
  * index method
  *
  * @return void
  */
 	public function index() {
-		$me['id'] = $this->Auth->user()['Tourist']['id'];
-		$notif = $this->Notification->find('all', array('conditions' => array('tourist_id' => $me['id']),'order' => array('Notification.created DESC')));
+		$myid = $this->Auth->user('Tourist.id');
+		$notif = $this->Notification->find('all', array('conditions' => array('tourist_id' => $myid),'order' => array('Notification.created DESC')));
 		$this->set('notifications', $notif);
 		$today = date("Y-m-d H:i:s");
 	  	$todayParsed = date_parse($today);
@@ -30,19 +32,19 @@ public $theme = "Bootstrap";
 		$this->set('item', $item);		
 	}
 	public function delete() {
-		$me['id'] = 1;
-		//$this->Notification->deleteAll(array('Notification.tourist_id' => $me['id'], 'Notification.viewed' => 1));
+		$myid = $this->Auth->user('Tourist.id');
+		//$this->Notification->deleteAll(array('Notification.tourist_id' => $myid, 'Notification.viewed' => 1));
 		//$this->redirect(array('action'=>'index'));
-		if ($this->Notification->deleteAll(array('Notification.tourist_id' => $me['id'], 'Notification.viewed' => 1),false)) {
-			$this->Session->setFlash(__('User deleted'),'alert');
+		if ($this->Notification->deleteAll(array('Notification.tourist_id' => $myid, 'Notification.viewed' => 1),false)) {
+			$this->Session->setFlash(__('Notifications deleted'),'alert');
 			$this->redirect(array('action' => 'index'));
 		}
 		$this->redirect(array('action' => 'index'));
 	}
 	function afterFilter(){
-		$me['id'] = 1;
-		$counterNoti = ($this->Notification->find('count', array('conditions' => array('tourist_id' => $me['id'], 'viewed' => 0))))-1;
-		$myNoti = $this->Notification->find('all', array('conditions' => array('tourist_id' => $me['id'], 'viewed' => 0)));
+		$myid = $this->Auth->user('Tourist.id');
+		$counterNoti = ($this->Notification->find('count', array('conditions' => array('tourist_id' => $myid, 'viewed' => 0))))-1;
+		$myNoti = $this->Notification->find('all', array('conditions' => array('tourist_id' => $myid, 'viewed' => 0)));
 		
 		$i = 0;
 		while ($i <= $counterNoti) {
