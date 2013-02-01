@@ -14,7 +14,7 @@ public $theme = "Bootstrap";
  * @return void
  */
 	public function index() {
-		$me['id'] = 1;
+		$me['id'] = $this->Auth->user()['Tourist']['id'];
 		$notif = $this->Notification->find('all', array('conditions' => array('tourist_id' => $me['id']),'order' => array('Notification.created DESC')));
 		$this->set('notifications', $notif);
 		$today = date("Y-m-d H:i:s");
