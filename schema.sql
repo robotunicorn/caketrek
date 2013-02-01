@@ -221,7 +221,19 @@ CREATE TABLE `tourists_friends` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+# Dump of table journeys_guides
+# ------------------------------------------------------------
 
+DROP TABLE IF EXISTS `journeys_guides`;
+
+CREATE TABLE IF NOT EXISTS `journeys_guides` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `journey_id` int(11) NOT NULL,
+  `guide_id` int(11) NOT NULL,
+  `budget` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=114 ;
 
 # Dump of table tracks
 # ------------------------------------------------------------
